@@ -1,8 +1,8 @@
 <div align="center">
 
-# ⚖️ StylU: Outfit Court
+#  StylU
 
-### The Retro AI Stylist That Puts Your Outfit on Trial
+### Style You With STYLU
 
 A retro-futuristic arcade courtroom for AI outfit critique, fashion verdicts, and a daily dress code randomizer.
 
