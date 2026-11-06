@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title class="">StylU // 90s TV Broadcast Studio</title>
+<!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, Press Start 2P -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            pixel: ['"Space Grotesk"', '"Press Start 2P"', 'sans-serif'],
+            terminal: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          },
+
+          colors: {
+            court: {
+              cyan: '#38bdf8',
+              pink: '#e0f2fe',
+              sky: '#0284c7',
+              ice: '#f0f9ff',
+              darkPlum: '#1f1b15',
+              cardPlum: '#28221b',
+              lavender: '#7dd3fc',
+              tvBody: '#eadeca',
+              tvRim: '#dfd0bc',
+              tvScreen: '#04131f'
+            }
+          },
+          boxShadow: {
+            'pixel-card': '5px 5px 0px 0px #cfbfa9, 7px 7px 0px 0px #38bdf8',
+            'pixel-btn': '4px 4px 0px 0px #dfd0bc',
+            'pixel-btn-hover': '2px 2px 0px 0px #38bdf8',
+            'crt-inner': 'inset 0 0 45px rgba(0, 0, 0, 0.95), inset 0 0 15px rgba(56, 189, 248, 0.4)'
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom CSS for Tie-Dye Backdrop & Scanlines -->
+<style data-purpose="background-atmosphere">
+    body {
+      background-color: #0b1a26;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Retro Warm Beige & Vintage Cream Blended with Sky Blue Phosphor Atmosphere */
+    .retro-clouds-bg {
+      background: 
+        radial-gradient(circle at 18% 22%, rgba(56, 189, 248, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 82% 28%, rgba(244, 223, 202, 0.55) 0%, transparent 48%),
+        radial-gradient(circle at 50% 50%, rgba(20, 24, 28, 0.88) 0%, transparent 70%),
+        radial-gradient(circle at 25% 80%, rgba(14, 165, 233, 0.40) 0%, transparent 45%),
+        radial-gradient(circle at 85% 82%, rgba(223, 208, 188, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 50% 12%, rgba(254, 246, 237, 0.65) 0%, transparent 40%),
+        linear-gradient(135deg, #091724 0%, #173248 35%, #2a2c28 70%, #15181b 100%);
+      background-blend-mode: screen, screen, normal, screen, screen, soft-light, normal;
+      background-attachment: fixed;
+    }
+
+    /* Ambient noise & analog broadcast scanline shimmer */
+    .scanlines-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(0, 20, 40, 0.35) 50%,
+        rgba(0, 20, 40, 0.35)
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+
+    .crt-glass-glare {
+      background: linear-gradient(125deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 30%, transparent 55%);
+      pointer-events: none;
+    }
+  </style>
+<!-- Custom CSS for CRT Bevels and Pixel Borders -->
+<style data-purpose="crt-and-borders">
+    /* CRT Chassis 3D Bevel effect (90s Warm Retro-Beige / Toasted Cream PC Hardware) */
+    .crt-housing {
+      box-shadow: 
+        -4px -4px 0px 2px rgba(255, 252, 245, 0.95) inset,
+        4px 4px 0px 2px rgba(140, 120, 101, 0.75) inset,
+        0 15px 35px rgba(10, 14, 20, 0.88),
+        0 0 16px 2px rgba(56, 189, 248, 0.25);
+    }
+
+    .crt-bezel-recess {
+      box-shadow: 
+        inset 5px 5px 12px rgba(92, 78, 65, 0.75),
+        inset -3px -3px 8px rgba(255, 250, 240, 0.8),
+        0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    /* Tactical Pixel Arcade Button Hover Translation */
+    .arcade-btn {
+      transition: transform 0.07s ease, box-shadow 0.07s ease, border-color 0.1s ease;
+    }
+    .arcade-btn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px 0px #38bdf8;
+      border-color: #7dd3fc;
+    }
+    .arcade-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0px 0px 0px 0px transparent;
+    }
+
+    /* Blinking CRT Upload Prompt */
+    @keyframes crtBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0.15; }
+    }
+    .crt-blink {
+      animation: crtBlink 1.1s infinite steps(1);
+    }
+
+    /* Subtle CRT screen flutter */
+    @keyframes crtFlicker {
+      0% { opacity: 0.98; }
+      50% { opacity: 1; }
+      100% { opacity: 0.99; }
+    }
+    .crt-flicker {
+      animation: crtFlicker 0.15s infinite;
+    }
+
+    /* Lucky Wheel Bulb Glow & Spin Animation */
+    .wheel-bulb {
+      animation: bulbBlink 0.9s infinite alternate;
+    }
+    .wheel-bulb:nth-child(even) {
+      animation-delay: 0.45s;
+    }
+    @keyframes bulbBlink {
+      0% { opacity: 0.35; filter: drop-shadow(0 0 1px #38bdf8); }
+      100% { opacity: 1; filter: drop-shadow(0 0 8px #7dd3fc); }
+    }
+
+    .slot-tick {
+      animation: slotFlash 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+    @keyframes slotFlash {
+      0% { transform: scale(0.97); filter: brightness(1.7) contrast(1.2); }
+      100% { transform: scale(1); filter: brightness(1) contrast(1); }
+    }
+  </style>
+</head>
+<body class="retro-clouds-bg text-slate-100 font-terminal selection:bg-sky-400 selection:text-slate-900 relative min-h-screen flex flex-col justify-between">
+<!-- Scanline texture over entire viewport -->
+<div class="scanlines-overlay fixed inset-0 z-40"></div>
+<!-- BEGIN: TopBroadcastBar -->
+<header class="w-full relative z-30 pt-3 pb-2 px-4 md:px-8 border-b border-[#dfd0bc]/30 bg-[#161d24]/80 backdrop-blur-sm shadow-[0_4px_20px_rgba(2,132,199,0.18)]" data-purpose="top-broadcast-bar"><div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm"><div class="flex items-center space-x-3 text-sky-100"><span class="flex items-center space-x-1.5 text-sky-300 font-pixel text-[10px] tracking-wider animate-pulse"><span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block shadow-[0_0_8px_#38bdf8]"></span><span class="text-white font-bold">REC ●</span></span><span class="font-pixel text-[10px] text-[#f4dfca]">00:24:19 [SP]</span><span class="hidden sm:inline-block px-1.5 py-0.5 border border-[#dfd0bc]/50 bg-[#28221b]/80 text-[#f4dfca] text-[10px] font-pixel shadow-sm">B&amp;E AIR // CH.04</span></div><nav aria-label="Retro Broadcast Navigation" class="flex items-center space-x-1 md:space-x-2 font-pixel text-[10px] text-[#fcf2e3]"><a class="flex items-center space-x-1 px-2 py-1 bg-[#28221b] hover:bg-[#3d342a] border border-sky-400 text-sky-200 hover:text-white transition-colors shadow-sm" href="#"><svg class="w-3 h-3 text-sky-300" fill="currentColor" viewbox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"></path></svg><span class="hidden sm:inline">HOME</span></a><button id="nav-about-btn" class="flex items-center space-x-1 px-2 py-1 bg-[#28221b] hover:bg-[#3d342a] border border-[#dfd0bc]/60 text-[#dfd0bc] hover:text-sky-200 transition-colors shadow-sm cursor-pointer"><svg class="w-3 h-3 text-[#dfd0bc]" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"></path></svg><span class="hidden sm:inline">ABOUT</span></button><button id="nav-contact-btn" class="flex items-center space-x-1 px-2 py-1 bg-[#28221b] hover:bg-[#3d342a] border border-[#dfd0bc]/60 text-[#dfd0bc] hover:text-sky-200 transition-colors shadow-sm cursor-pointer"><svg class="w-3 h-3 text-[#dfd0bc]" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg><span class="hidden sm:inline">CONTACT</span></button><span class="hidden md:flex items-center space-x-1 px-2 py-1 bg-[#1a232c] border border-sky-300/60 text-sky-300 text-[9px]"><span class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-ping"></span><span class="">DASHBOARD: LIVE</span></span></nav><div class="hidden lg:flex items-center space-x-1" title="Broadcast Audio Level"><span class="text-[10px] font-pixel text-[#dfd0bc] mr-1.5">AUDIO L/R</span><div class="flex items-end space-x-0.5 h-3"><span class="w-1 bg-sky-400 h-1"></span><span class="w-1 bg-sky-300 h-2"></span><span class="w-1 bg-sky-200 h-3"></span><span class="w-1 bg-[#f4dfca] h-2"></span><span class="w-1 bg-white h-2.5"></span><span class="w-1 bg-sky-300 h-1 animate-pulse"></span></div></div><div class="flex items-center space-x-3 text-[11px] font-pixel"><button class="px-2 py-1 bg-[#28221b] hover:bg-[#3d342a] border border-[#dfd0bc]/70 text-[#fcf2e3] transition-colors shadow-sm" data-purpose="audio-toggle-button" id="audio-toggle">SOUND: <span class="text-sky-300" id="audio-status">ON</span></button><button class="px-2 py-1 bg-[#28221b] hover:bg-[#3d342a] border border-[#dfd0bc]/70 text-[#fcf2e3] transition-colors shadow-sm" data-purpose="scanline-toggle-button" id="scanline-toggle">CRT: <span class="text-sky-200" id="scanline-status">HI-RES</span></button><button class="px-2 py-1 bg-[#28221b] hover:bg-[#3d342a] border border-[#dfd0bc]/70 text-[#fcf2e3] transition-colors shadow-sm cursor-pointer" data-purpose="settings-toggle-button" id="top-settings-btn" title="Open System Settings">⚙️ <span class="text-sky-300">SETTINGS</span></button><span class="inline-flex items-center justify-center w-6 h-6 bg-[#1a232c] border border-sky-300 text-sky-200 text-[10px] font-bold font-sans shadow-sm">Ps</span></div></div></header>
+<!-- END: TopBroadcastBar -->
+<!-- BEGIN: MainStudioView -->
+<main class="w-full max-w-7xl mx-auto px-4 py-4 md:py-6 relative z-20 flex-grow flex flex-col justify-center" data-purpose="studio-main-layout">
+<!-- Title Header: WELCOME TO OUTFIT COURT -->
+<div class="text-center mb-6 md:mb-8" data-purpose="header-banner">
+<h1 class="font-pixel text-lg sm:text-2xl md:text-3xl tracking-widest text-[#fcf2e3] drop-shadow-[0_0_15px_rgba(56,189,248,0.85)]">WELCOME TO <span class="text-sky-300">STYLU</span></h1>
+<p class="font-pixel text-xs sm:text-sm text-sky-200 mt-2 tracking-widest drop-shadow-[0_0_12px_rgba(56,189,248,0.8)] italic">
+  "Style you with stylu"
+</p>
+</div>
+<!-- The Retro Workspace: Character Operator, Center CRT TV & Right 7-Button Arcade Menu Stack -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-end max-w-7xl mx-auto w-full">
+<!-- ============================================== -->
+<!-- ZONE 1: LEFT - CHARACTER OPERATING CRT TV      -->
+<!-- ============================================== -->
+<section class="lg:col-span-3 order-2 lg:order-1 flex flex-col items-center justify-end pb-1 relative" data-purpose="left-character-operator">
+  <!-- Interactive speech bubble -->
+  <div class="mb-2 bg-[#28221b]/95 border-2 border-[#dfd0bc] px-3 py-1.5 text-center shadow-pixel-card rounded-none relative transition-all" id="operator-speech-bubble">
+    <span class="font-pixel text-[9px] text-sky-300 tracking-wider block" id="operator-speech-text">CLICK ME TO TUNE TV! 📺</span>
+    <span class="font-terminal text-[10px] text-[#f4dfca] block opacity-80">(REMOTE CONTROL ACTIVE)</span>
+    <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#28221b] border-r-2 border-b-2 border-[#dfd0bc] rotate-45"></div>
+  </div>
+
+  <!-- Character graphic holding remote pointing at TV -->
+  <div class="relative cursor-pointer group" id="character-operator" title="Click character to switch TV channel with remote!">
+    <img src="/assets/character_remote.png" alt="Pixel art character operating TV with remote" class="w-full max-w-[210px] md:max-w-[230px] h-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] transition-transform duration-150 group-hover:scale-105 active:scale-95" />
+    <!-- Infrared LED beam emitter on remote tip -->
+    <div id="remote-infrared-beam" class="opacity-0 transition-opacity duration-150 absolute top-[28%] -right-1 w-3.5 h-3.5 rounded-full bg-red-500 shadow-[0_0_12px_#ef4444]"></div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- ZONE 2: CENTER - THE ICONIC RETRO CRT TV       -->
+<!-- ============================================== -->
+<section class="lg:col-span-6 order-1 lg:order-2 flex justify-center" data-purpose="center-crt-television">
+<!-- CRT Monitor Outer Casing (Warm vintage retro computer/CRT beige/cream casing #eadeca / #dfd0bc / #cfbfa9) -->
+<div class="w-full max-w-[560px] bg-[#eadeca] p-4 md:p-6 rounded-[32px] crt-housing border-4 border-[#cfbfa9] relative" id="crt-frame">
+<!-- Top casing vent slits in warm tactile hardware shade -->
+<div class="flex justify-center space-x-1.5 mb-2.5 opacity-70">
+<span class="w-8 h-1 bg-[#a89682] rounded-full"></span>
+<span class="w-8 h-1 bg-[#a89682] rounded-full"></span>
+<span class="w-8 h-1 bg-[#a89682] rounded-full"></span>
+<span class="w-8 h-1 bg-[#a89682] rounded-full"></span>
+<span class="w-8 h-1 bg-[#a89682] rounded-full"></span>
+</div>
+<!-- CRT Inner Recessed Bezel (Warm tactile beige / cream trim #dfd0bc) -->
+<div class="bg-[#dfd0bc] p-3 md:p-4 rounded-[26px] crt-bezel-recess relative border border-[#cfbfa9]">
+<!-- Glass Screen Container (Deep curved screen with glowing sky blue HUD) -->
+<div class="relative bg-court-tvScreen rounded-[22px] overflow-hidden aspect-[4/3] shadow-crt-inner crt-flicker border-2 border-slate-900 flex flex-col justify-between p-3 md:p-4" id="crt-screen">
+<!-- Subtle CRT Glass Reflection Sheen -->
+<div class="crt-glass-glare absolute inset-0 z-20 pointer-events-none"></div>
+<!-- CRT Top Screen HUD Display -->
+<div class="relative z-10 flex justify-between items-start text-[10px] md:text-xs font-pixel text-sky-300">
+<span class="bg-black/80 px-2 py-1 rounded border border-sky-400/60">CH 04 : STRICT AUNTIE</span>
+<span class="text-sky-200 animate-pulse bg-black/80 px-2 py-1 rounded border border-sky-300/60 shadow-[0_0_8px_rgba(56,189,248,0.5)]">AI JURY LIVE</span>
+</div>
+<!-- Screen Center: Interactive Upload / Avatar -->
+<div class="relative z-10 my-auto text-center px-3" data-purpose="interactive-screen-content"><label class="cursor-pointer group block border-2 border-dashed border-sky-400 hover:border-[#fcf2e3] p-2.5 md:p-3 bg-black/60 backdrop-blur-xs transition-colors rounded-lg shadow-[0_0_15px_rgba(56,189,248,0.25)] relative overflow-hidden" for="fit-photo-upload"><div class="flex items-center justify-center gap-3 mb-2"><div class="w-20 h-20 md:w-24 md:h-24 relative flex-shrink-0 flex items-center justify-center bg-sky-950/80 rounded-lg p-1 border-2 border-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.5)]"><img alt="Retro pixel art defendant avatar" class="w-full h-full object-contain rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGnvA9aCXAN8g-5m5eYS5LCdexdiAJWtywY8cH7kD2a-eCTy5vEY5xYhlZ1x2XZh6h-LO1gtxPi3ki9tObOdeVWMlgGfOOosl9o_jcobaqUaDDnRMl6r3cwWFdAVyqCp6cti2fvRJVWnWLgwchx9NSMjfSYJT76gR8mRJ5t6WKcXRGjAt2BP8wkla_ZC93qVmIGg2CKLc43X1caO-i6M1tg8xR_uheiDLjTEbsEWVj0Kdb3uXIEVPuqF4Os1xUeH-rkA"/><span class="absolute -bottom-1 -right-1 w-3 h-3 bg-sky-300 border border-black rounded-full shadow-[0_0_8px_#38bdf8]"></span></div><div class="text-left space-y-1"><div class="crt-blink text-sky-300 font-pixel text-[11px] md:text-xs tracking-wider flex items-center space-x-1.5"><span class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-ping inline-block"></span><span class="">DROP ZONE ACTIVE</span></div><p class="font-terminal text-sm md:text-base text-white tracking-wide font-bold">DRAG &amp; DROP OUTFIT HERE</p><p class="font-terminal text-xs text-sky-200/90">AI DEFENDANT READY FOR INSPECTION</p></div></div><div class="mt-1 mb-2"><span class="inline-flex items-center justify-center space-x-2 w-full py-1.5 px-3 bg-sky-900/90 group-hover:bg-sky-800 border-2 border-sky-300 text-white font-pixel text-[10px] md:text-xs tracking-wider shadow-pixel-btn active:translate-y-0.5 transition-all"><span class="text-sky-300 font-bold">▲</span><span class="">[ INSERT YOUR OUTFIT ]</span><span class="text-[9px] text-sky-200 font-terminal">(BROWSE FIT)</span></span></div><div class="flex items-center justify-between border-t border-sky-500/40 pt-1.5 text-[10px] md:text-xs font-terminal text-sky-200"><span class="flex items-center space-x-1 hover:text-white transition-colors"><span class="text-sky-300">📁</span><span class="">OR CLICK TO SELECT FILE</span></span><span class="text-sky-400">•</span><span class="text-sky-300 hover:text-white cursor-pointer">📷 SNAP SELFIE</span><span class="text-sky-400">•</span><span class="text-[9px] text-sky-100/80 uppercase">JPG/PNG &lt;10MB</span></div></label><input accept="image/*" class="hidden" id="fit-photo-upload" type="file"/></div>
+<!-- Screen Footer Ticker -->
+<div class="relative z-10 flex justify-between items-center text-[9px] md:text-[10px] font-pixel text-sky-200/80 border-t border-sky-900/60 pt-1.5">
+<span class="text-sky-300">SIGNAL: 99.8%</span>
+<span class="truncate max-w-[200px] text-white">VERDICT WAITING ON YOU...</span>
+<span class="text-sky-300">NTSC-U</span>
+</div>
+</div>
+<!-- End Glass Screen -->
+</div>
+<!-- End CRT Recessed Bezel -->
+<!-- Bottom Bezel Hardware Controls (Vintage Hardware Beige & Tactile Buttons) -->
+<div class="mt-3.5 pt-1.5 flex items-center justify-between px-2" data-purpose="tv-hardware-buttons">
+<!-- Left Brand Badge -->
+<div class="flex items-center space-x-1.5">
+<span class="font-pixel text-[9px] tracking-wider text-[#524435] font-bold">B&amp;E CRT-3000</span>
+<span class="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_6px_#38bdf8] inline-block" title="Power Standby"></span>
+</div>
+<!-- Inset Tactile Physical Square Buttons in Vintage PC Hardware Beige -->
+<div class="flex space-x-2 md:space-x-3 bg-[#cfbfa9] p-1.5 rounded-md border border-[#b8a791] shadow-inner">
+<!-- Button 1: Power -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-[#fffbf4] to-[#ded1be] border border-[#a89682] rounded text-[9px] font-pixel text-sky-700 active:translate-y-0.5 shadow-sm hover:text-sky-900 flex items-center justify-center font-bold" id="btn-power" title="Power Cycle">
+                PWR
+              </button>
+<!-- Button 2: Channel UP -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-[#fffbf4] to-[#ded1be] border border-[#a89682] rounded text-[9px] font-pixel text-[#343026] active:translate-y-0.5 shadow-sm hover:text-sky-700 flex items-center justify-center font-bold" id="btn-ch-up" title="Channel Up">
+                CH▲
+              </button>
+<!-- Button 3: Channel DOWN -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-[#fffbf4] to-[#ded1be] border border-[#a89682] rounded text-[9px] font-pixel text-[#343026] active:translate-y-0.5 shadow-sm hover:text-sky-700 flex items-center justify-center font-bold" id="btn-ch-down" title="Channel Down">
+                CH▼
+              </button>
+<!-- Button 4: Menu / Mode -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-[#fffbf4] to-[#ded1be] border border-[#a89682] rounded text-[8px] font-pixel text-[#343026] active:translate-y-0.5 shadow-sm hover:text-sky-700 flex items-center justify-center font-bold" id="btn-mute" title="Mute / Static">
+                MUTE
+              </button>
+</div>
+<!-- Small right headphone jack detail -->
+<div class="w-3.5 h-3.5 rounded-full bg-[#8c7865] border-2 border-[#524435]" title="Phone Out"></div>
+</div>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- ZONE 3: RIGHT - THE 7-ITEM ARCADE MENU STACK   -->
+<!-- ============================================== -->
+<nav aria-label="Arcade Main Menu" class="lg:col-span-3 order-3" data-purpose="right-arcade-menu">
+<ul class="space-y-2.5 sm:space-y-3">
+<!-- Item 01: START TRIAL -->
+<li class="">
+<button class="w-full text-left bg-[#241e17]/95 hover:bg-[#342b21] border-2 border-[#dfd0bc] p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-sky-300" data-purpose="menu-item-1">
+<span class="font-pixel text-xs text-sky-300 group-hover:text-white font-bold">01</span>
+<div>
+<h3 class="font-pixel text-[11px] text-[#fcf2e3] tracking-wide group-hover:text-sky-200">START TRIAL</h3>
+<p class="font-terminal text-sm text-[#d7c3af] group-hover:text-white leading-tight">DROP YOUR OUTFIT</p>
+</div>
+</button>
+</li>
+<!-- Item 02: PICK A JUDGE -->
+<li class="">
+<button class="w-full text-left bg-[#241e17]/95 hover:bg-[#342b21] border-2 border-[#dfd0bc] p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-sky-300" data-purpose="menu-item-2">
+<span class="font-pixel text-xs text-sky-300 group-hover:text-white font-bold">02</span>
+<div>
+<h3 class="font-pixel text-[11px] text-[#fcf2e3] tracking-wide group-hover:text-sky-200">PICK A JUDGE</h3>
+<p class="font-terminal text-sm text-[#d7c3af] group-hover:text-white leading-tight">CHOOSE YOUR CRITIC</p>
+</div>
+</button>
+</li>
+<!-- Item 03: MY CASES -->
+<li class="">
+<button class="w-full text-left bg-[#241e17]/95 hover:bg-[#342b21] border-2 border-[#dfd0bc] p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-sky-300" data-purpose="menu-item-3">
+<span class="font-pixel text-xs text-sky-300 group-hover:text-white font-bold">03</span>
+<div>
+<h3 class="font-pixel text-[11px] text-[#fcf2e3] tracking-wide group-hover:text-sky-200">MY CASES</h3>
+<p class="font-terminal text-sm text-[#d7c3af] group-hover:text-white leading-tight">PAST VERDICTS &amp; BAIL</p>
+</div>
+</button>
+</li>
+<!-- Item 04: SETTINGS -->
+<li class="">
+<button class="w-full text-left bg-[#241e17]/95 hover:bg-[#342b21] border-2 border-[#dfd0bc] p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-sky-300 cursor-pointer" data-purpose="menu-item-settings" id="menu-item-settings">
+<span class="font-pixel text-xs text-sky-300 group-hover:text-white font-bold">04</span>
+<div>
+<h3 class="font-pixel text-[11px] text-[#fcf2e3] tracking-wide group-hover:text-sky-200">SETTINGS</h3>
+<p class="font-terminal text-sm text-[#d7c3af] group-hover:text-white leading-tight">SOUND, SCANLINES &amp; PRIVACY</p>
+</div>
+</button>
+</li>
+<!-- Item 05: ABOUT STYLU -->
+<li class="">
+<button class="w-full text-left bg-[#241e17]/95 hover:bg-[#342b21] border-2 border-[#dfd0bc] p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-sky-300 cursor-pointer" data-purpose="menu-item-about" id="menu-item-about">
+<span class="font-pixel text-xs text-sky-300 group-hover:text-white font-bold">05</span>
+<div>
+<h3 class="font-pixel text-[11px] text-[#fcf2e3] tracking-wide group-hover:text-sky-200">ABOUT STYLU</h3>
+<p class="font-terminal text-sm text-[#d7c3af] group-hover:text-white leading-tight">APP MISSION &amp; AI TRIBUNAL</p>
+</div>
+</button>
+</li>
+<!-- Item 06: CONTACT US -->
+<li class="">
+<button class="w-full text-left bg-[#241e17]/95 hover:bg-[#342b21] border-2 border-[#dfd0bc] p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-sky-300 cursor-pointer" data-purpose="menu-item-contact" id="menu-item-contact">
+<span class="font-pixel text-xs text-sky-300 group-hover:text-white font-bold">06</span>
+<div>
+<h3 class="font-pixel text-[11px] text-[#fcf2e3] tracking-wide group-hover:text-sky-200">CONTACT US</h3>
+<p class="font-terminal text-sm text-[#d7c3af] group-hover:text-white leading-tight">8248049524 // 12kishore47</p>
+</div>
+</button>
+</li>
+</ul>
+</nav>
+</div>
+<!-- ============================================================== -->
+<!-- NEW: RETRO LUCKY WHEEL // 7-DAY DRESSCODE RANDOMIZER MODULE    -->
+<!-- ============================================================== -->
+<section class="w-full mt-6 bg-[#28221b]/95 border-2 border-[#dfd0bc] p-4 md:p-6 shadow-pixel-card rounded-none backdrop-blur-md relative" data-purpose="lucky-wheel-dresscode-randomizer"><!-- Title & Header Bar -->
+<div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#dfd0bc]/50 pb-3 mb-5">
+<div class="flex items-center space-x-2.5">
+<span class="w-3 h-3 rounded-full bg-sky-400 animate-pulse shadow-[0_0_12px_#38bdf8]"></span>
+<div>
+<h2 class="font-pixel text-xs sm:text-sm text-[#fcf2e3] tracking-widest uppercase flex items-center gap-2">
+<span>LUCKY WHEEL PROTOCOL</span>
+<span class="text-sky-300">// 7-DAY DRESSCODE ORACLE</span>
+</h2>
+<p class="font-terminal text-xs text-[#d7c3af] mt-0.5 tracking-wide">TRIBUNAL CLOTHING ROTATION ENGINE • SYSTEM RE-SPIN V9.4</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 border border-sky-400/80 bg-[#161d24]/90 text-sky-300 font-pixel text-[9px] tracking-wider flex items-center gap-1.5 shadow-sm">
+<span class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-ping"></span>
+      RANDOMIZER: ONLINE
+    </span>
+<span class="px-2.5 py-1 border border-amber-400/80 bg-[#291f0c]/90 text-amber-300 font-pixel text-[9px] tracking-wider shadow-sm">
+      🎰 SPIN JACKPOT: ACTIVE
+    </span>
+<span class="px-2.5 py-1 border border-[#dfd0bc]/70 bg-[#1f1a14] text-[#f4dfca] font-pixel text-[9px]">
+      TARGET DAY: <span class="text-sky-300 font-bold" id="badge-current-day">TUE (TODAY)</span>
+</span>
+</div>
+</div>
+<!-- Main Grid: Turntable Column + 7-Day Ledger Column -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+<!-- Left Column: High-Voltage Arcade Turntable + Live Verdict Box -->
+<div class="xl:col-span-5 flex flex-col items-center bg-[#17130e]/95 border-2 border-[#8c7865] p-4 md:p-5 relative shadow-inner">
+<!-- Brass Trim Header -->
+<div class="w-full flex items-center justify-between border-b border-[#827260]/60 pb-2 mb-3 text-[10px] font-pixel text-[#dfd0bc]">
+<span class="text-sky-300 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>ORACLE TURNTABLE v9.0</span>
+<span class="text-amber-300">51.428° / SLICE • FAIR RNG</span>
+</div>
+<!-- The Arcade Wheel Structure -->
+<div class="relative flex items-center justify-center my-3 select-none">
+<!-- Top Needle Pointer -->
+<div class="absolute -top-4 z-30 flex flex-col items-center filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.95)]">
+<div class="w-0 h-0 border-l-[11px] border-l-transparent border-r-[11px] border-r-transparent border-t-[20px] border-t-amber-400"></div>
+<div class="w-2.5 h-2.5 -mt-4 bg-sky-300 rounded-full border border-black shadow-[0_0_8px_#38bdf8]"></div>
+</div>
+<!-- Golden Arcade Outer Chassis with Alternating Neon Glowing Studs -->
+<div class="w-[280px] h-[280px] sm:w-[310px] sm:h-[310px] rounded-full bg-gradient-to-b from-[#dfd0bc] via-[#8c7865] to-[#28221b] p-3 border-4 border-[#eadeca] shadow-[0_0_25px_rgba(56,189,248,0.35)] relative flex items-center justify-center">
+<!-- Glowing Bulbs Array Around Perimeter -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<span class="wheel-bulb absolute -top-1 w-2.5 h-2.5 rounded-full bg-sky-300 border border-black shadow-[0_0_6px_#38bdf8]"></span>
+<span class="wheel-bulb absolute top-5 right-10 w-2.5 h-2.5 rounded-full bg-amber-300 border border-black shadow-[0_0_6px_#f59e0b]"></span>
+<span class="wheel-bulb absolute top-14 right-2 w-2.5 h-2.5 rounded-full bg-sky-300 border border-black shadow-[0_0_6px_#38bdf8]"></span>
+<span class="wheel-bulb absolute top-32 -right-1 w-2.5 h-2.5 rounded-full bg-amber-300 border border-black shadow-[0_0_6px_#f59e0b]"></span>
+<span class="wheel-bulb absolute bottom-14 right-2 w-2.5 h-2.5 rounded-full bg-sky-300 border border-black shadow-[0_0_6px_#38bdf8]"></span>
+<span class="wheel-bulb absolute bottom-5 right-10 w-2.5 h-2.5 rounded-full bg-amber-300 border border-black shadow-[0_0_6px_#f59e0b]"></span>
+<span class="wheel-bulb absolute -bottom-1 w-2.5 h-2.5 rounded-full bg-sky-300 border border-black shadow-[0_0_6px_#38bdf8]"></span>
+<span class="wheel-bulb absolute bottom-5 left-10 w-2.5 h-2.5 rounded-full bg-amber-300 border border-black shadow-[0_0_6px_#f59e0b]"></span>
+<span class="wheel-bulb absolute bottom-14 left-2 w-2.5 h-2.5 rounded-full bg-sky-300 border border-black shadow-[0_0_6px_#38bdf8]"></span>
+<span class="wheel-bulb absolute top-32 -left-1 w-2.5 h-2.5 rounded-full bg-amber-300 border border-black shadow-[0_0_6px_#f59e0b]"></span>
+<span class="wheel-bulb absolute top-14 left-2 w-2.5 h-2.5 rounded-full bg-sky-300 border border-black shadow-[0_0_6px_#38bdf8]"></span>
+<span class="wheel-bulb absolute top-5 left-10 w-2.5 h-2.5 rounded-full bg-amber-300 border border-black shadow-[0_0_6px_#f59e0b]"></span>
+</div>
+<!-- The Rotating Turntable SVG with 7 Vibrant Distinct Palette Slices & Radial Typography -->
+<div class="w-full h-full rounded-full overflow-hidden border-2 border-black/80 relative shadow-inner" id="wheel-turntable" style="transition: transform 4.2s cubic-bezier(0.12, 0.98, 0.22, 1); transform: rotate(0deg);">
+<svg class="w-full h-full" viewbox="0 0 300 300">
+<defs>
+<radialgradient cx="50%" cy="50%" id="wheelCenterGlow" r="50%">
+<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#000000" stop-opacity="0.6"></stop>
+</radialgradient>
+</defs>
+<g transform="translate(150, 150)">
+<!-- Slice 0: MON (Navy Blue) -->
+<path d="M 0 0 L 0 -150 A 150 150 0 0 1 117.3 -93.4 Z" fill="#006194" stroke="#dfd0bc" stroke-width="2"></path>
+<!-- Slice 1: TUE (Vibrant Sky Blue) -->
+<path d="M 0 0 L 117.3 -93.4 A 150 150 0 0 1 146.2 33.4 Z" fill="#0284c7" stroke="#dfd0bc" stroke-width="2"></path>
+<!-- Slice 2: WED (Vintage Olive Sage) -->
+<path d="M 0 0 L 146.2 33.4 A 150 150 0 0 1 65.1 135.1 Z" fill="#4d5f47" stroke="#dfd0bc" stroke-width="2"></path>
+<!-- Slice 3: THU (Warm Amber Leather) -->
+<path d="M 0 0 L 65.1 135.1 A 150 150 0 0 1 -65.1 135.1 Z" fill="#785a3c" stroke="#dfd0bc" stroke-width="2"></path>
+<!-- Slice 4: FRI (Crimson Biker Plum) -->
+<path d="M 0 0 L -65.1 135.1 A 150 150 0 0 1 -146.2 33.4 Z" fill="#3b2b23" stroke="#dfd0bc" stroke-width="2"></path>
+<!-- Slice 5: SAT (Cyber Denim Indigo) -->
+<path d="M 0 0 L -146.2 33.4 A 150 150 0 0 1 -117.3 -93.4 Z" fill="#1e3a5f" stroke="#dfd0bc" stroke-width="2"></path>
+<!-- Slice 6: SUN (Toasted Espresso Cream) -->
+<path d="M 0 0 L -117.3 -93.4 A 150 150 0 0 1 0 -150 Z" fill="#695949" stroke="#dfd0bc" stroke-width="2"></path>
+<!-- Outer Decorative Ring -->
+<circle cx="0" cy="0" fill="none" r="146" stroke="#dfd0bc" stroke-dasharray="4,3" stroke-width="1.5"></circle>
+<!-- Segment 0: BLAZER -->
+<g transform="rotate(25.7) translate(0, -88)">
+<text fill="#ffffff" font-family="'Press Start 2P', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">BLAZER</text>
+</g>
+<!-- Segment 1: DENIM -->
+<g transform="rotate(77.1) translate(0, -88)">
+<text fill="#ffffff" font-family="'Press Start 2P', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">DENIM</text>
+</g>
+<!-- Segment 2: CARGO -->
+<g transform="rotate(128.6) translate(0, -88)">
+<text fill="#ffffff" font-family="'Press Start 2P', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">CARGO</text>
+</g>
+<!-- Segment 3: KNITWEAR -->
+<g transform="rotate(180) translate(0, -88)">
+<text fill="#ffffff" font-family="'Press Start 2P', monospace" font-size="7.5" font-weight="bold" text-anchor="middle">KNITWEAR</text>
+</g>
+<!-- Segment 4: LEATHER -->
+<g transform="rotate(231.4) translate(0, -88)">
+<text fill="#ffffff" font-family="'Press Start 2P', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">LEATHER</text>
+</g>
+<!-- Segment 5: HOODIE -->
+<g transform="rotate(282.8) translate(0, -88)">
+<text fill="#ffffff" font-family="'Press Start 2P', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">HOODIE</text>
+</g>
+<!-- Segment 6: LOUNGE -->
+<g transform="rotate(334.3) translate(0, -88)">
+<text fill="#ffffff" font-family="'Press Start 2P', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">LOUNGE</text>
+</g>
+</g>
+</svg>
+</div>
+<!-- Center 3D Chrome Hub Button -->
+<button class="absolute z-20 w-16 h-16 rounded-full bg-gradient-to-b from-[#ffffff] via-[#cfbfa9] to-[#695949] p-1 border-2 border-amber-300 shadow-[0_0_15px_rgba(56,189,248,0.7)] flex items-center justify-center group active:scale-95 transition-transform cursor-pointer" id="wheel-center-spin-btn" title="Click to Spin Lucky Wheel">
+<span class="w-full h-full rounded-full bg-[#1b2631] border border-sky-400 flex flex-col items-center justify-center text-center">
+<span class="font-pixel text-[9px] text-amber-300 group-hover:text-white leading-none font-bold">SPIN</span>
+<span class="font-pixel text-[6px] text-sky-300 mt-0.5">HUB</span>
+</span>
+</button>
+</div>
+</div>
+<!-- Arcade Action Buttons -->
+<div class="w-full space-y-2 mt-2">
+<button class="w-full py-2.5 px-3 bg-gradient-to-r from-[#006194] to-[#0284c7] hover:from-[#007bb9] hover:to-[#38bdf8] border-2 border-[#dfd0bc] text-white font-pixel text-[10px] md:text-xs tracking-wider shadow-pixel-btn arcade-btn flex items-center justify-center space-x-2 cursor-pointer" id="btn-spin-today">
+<span class="text-amber-300 font-bold text-sm">🎰</span>
+<span>[ SPIN FOR TODAY'S CODE ]</span>
+</button>
+<button class="w-full py-2 px-3 bg-[#28221b] hover:bg-[#3d342a] border border-sky-400/80 text-sky-200 font-pixel text-[9px] md:text-[10px] tracking-wider shadow-sm arcade-btn flex items-center justify-center space-x-2 cursor-pointer" id="btn-auto-week">
+<span class="text-sky-300 font-bold">⚡</span>
+<span>[ AUTO-GENERATE FULL 7-DAY FIT CODES ]</span>
+</button>
+</div>
+<!-- Live Outcome Terminal Box -->
+<div class="w-full mt-3 bg-[#110e0b] border border-[#8c7865] p-3 text-left relative overflow-hidden" id="oracle-verdict-box">
+<div class="flex items-center justify-between border-b border-[#827260]/60 pb-1.5 mb-2">
+<span class="font-pixel text-[9px] text-sky-300 tracking-wider flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-ping"></span>
+          TODAY'S FIT DIRECTIVE
+        </span>
+<span class="font-pixel text-[9px] text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 border border-emerald-500 shadow-sm" id="oracle-score-tag">DRIP: 94%</span>
+</div>
+<div class="flex items-baseline justify-between mb-1">
+<h3 class="font-pixel text-xs sm:text-sm text-[#fcf2e3] uppercase tracking-wide" id="oracle-code-title">TUE // WASHED DENIM GOD</h3>
+<span class="font-terminal text-sm text-sky-300 font-bold" id="oracle-day-slot">ASSIGNED TO: TUESDAY</span>
+</div>
+<p class="font-terminal text-sm md:text-base text-[#f5ece1] leading-snug mb-2.5" id="oracle-code-desc">Double denim ensemble with faded vintage wash, boxy tee, and chunky dark loafers.</p>
+<div class="grid grid-cols-2 gap-2 text-xs md:text-sm font-terminal pt-2 border-t border-[#827260]/40">
+<div class="bg-[#18140f]/90 p-1.5 border border-[#827260]/40">
+<span class="text-sky-300 font-pixel text-[8px] block mb-0.5">STYLE TIP:</span>
+<span class="text-[#f4dfca] leading-tight block" id="oracle-rule">Ensure distinct contrasting denim tones or strict matching set</span>
+</div>
+<div class="bg-[#18140f]/90 p-1.5 border border-[#827260]/40">
+<span class="text-amber-300 font-pixel text-[8px] block mb-0.5">AVOID:</span>
+<span class="text-[#f4dfca] leading-tight block" id="oracle-crime">Skinny jeans or overly distress knee rips</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: 7-Day Dresscode Tracker Ledger -->
+<div class="xl:col-span-7 flex flex-col justify-between h-full">
+<!-- Ledger Header Bar -->
+<div class="flex flex-wrap items-center justify-between gap-2 bg-[#17130e]/95 border-2 border-[#8c7865] px-3.5 py-2.5 mb-3">
+<div class="flex items-center space-x-2">
+<span class="font-pixel text-[10px] text-[#fcf2e3] tracking-wider">WEEKLY 7-DAY DRESSCODE LEDGER</span>
+<span class="text-xs font-terminal text-[#d7c3af]">(CLICK ANY DAY CARD TO TARGET-SPIN)</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="font-pixel text-[9px] text-sky-300">AUTO-SYNC: 100%</span>
+</div>
+</div>
+<!-- The Complete 7-Day Interactive Card Grid (MON -> SUN) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 xl:grid-cols-7 gap-2.5" id="weekly-cards-grid">
+<!-- DAY 1: MON -->
+<div class="day-card bg-[#17130e]/90 border border-[#8c7865] hover:border-sky-300 p-2.5 flex flex-col justify-between transition-all cursor-pointer shadow-sm relative group" data-day-index="0">
+<div>
+<div class="flex items-center justify-between border-b border-[#827260]/60 pb-1 mb-1.5">
+<span class="font-pixel text-[9px] text-sky-300 font-bold">MON // 01</span>
+<span class="font-pixel text-[8px] px-1 py-0.2 bg-[#28221b] text-sky-200 border border-[#dfd0bc]/40 day-status">APPROVED</span>
+</div>
+<h4 class="font-pixel text-[9px] text-[#fcf2e3] leading-tight mb-1 day-name">NEO-TAILORED</h4>
+<div class="flex space-x-1 mb-1.5">
+<span class="w-3 h-2 bg-[#006194] border border-black/60 inline-block" title="Navy"></span>
+<span class="w-3 h-2 bg-[#3f4850] border border-black/60 inline-block" title="Slate"></span>
+<span class="w-3 h-2 bg-[#eae1d2] border border-black/60 inline-block" title="Cream"></span>
+</div>
+<p class="font-terminal text-xs text-[#f5ece1] leading-snug mb-2 day-items">Sharp structured blazer, pleated wide trousers, leather tote.</p>
+</div>
+<div>
+<div class="w-full h-1 bg-[#28221b] border border-[#524435] mb-1">
+<div class="h-full bg-sky-300 day-bar" style="width: 88%"></div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-pixel text-[#d7c3af]">
+<span>SCORE: <span class="text-white day-score">88%</span></span>
+<span class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity">SPIN ↺</span>
+</div>
+</div>
+</div>
+<!-- DAY 2: TUE (Active Today) -->
+<div class="day-card bg-[#161d24]/95 border-2 border-sky-300 p-2.5 flex flex-col justify-between shadow-[0_0_12px_rgba(56,189,248,0.35)] transition-all cursor-pointer relative group" data-day-index="1">
+<div>
+<div class="flex items-center justify-between border-b border-sky-400/60 pb-1 mb-1.5">
+<div class="flex items-center space-x-1">
+<span class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-ping"></span>
+<span class="font-pixel text-[9px] text-white font-bold">TUE // 02</span>
+</div>
+<span class="font-pixel text-[8px] px-1 py-0.2 bg-sky-900 text-white border border-sky-300 day-status">LOCKED IN</span>
+</div>
+<h4 class="font-pixel text-[9px] text-sky-200 leading-tight mb-1 day-name">WASHED DENIM GOD</h4>
+<div class="flex space-x-1 mb-1.5">
+<span class="w-3 h-2 bg-[#0284c7] border border-black/60 inline-block" title="Denim Blue"></span>
+<span class="w-3 h-2 bg-[#e0f2fe] border border-black/60 inline-block" title="Ice White"></span>
+<span class="w-3 h-2 bg-[#1f1b15] border border-black/60 inline-block" title="Dark Plum"></span>
+</div>
+<p class="font-terminal text-xs text-sky-100 font-bold leading-snug mb-2 day-items">Layered washed denim, boxy tee, chunky loafers.</p>
+</div>
+<div>
+<div class="w-full h-1 bg-black/60 border border-sky-400/60 mb-1">
+<div class="h-full bg-sky-400 shadow-[0_0_8px_#38bdf8] day-bar" style="width: 94%"></div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-pixel text-sky-300">
+<span>SCORE: <span class="text-white day-score">94%</span></span>
+<span class="text-sky-200">TODAY ★</span>
+</div>
+</div>
+</div>
+<!-- DAY 3: WED -->
+<div class="day-card bg-[#17130e]/90 border border-[#8c7865] hover:border-sky-300 p-2.5 flex flex-col justify-between transition-all cursor-pointer shadow-sm relative group" data-day-index="2">
+<div>
+<div class="flex items-center justify-between border-b border-[#827260]/60 pb-1 mb-1.5">
+<span class="font-pixel text-[9px] text-sky-300 font-bold">WED // 03</span>
+<span class="font-pixel text-[8px] px-1 py-0.2 bg-[#28221b] text-[#f4dfca] border border-[#dfd0bc]/40 day-status">MANDATORY</span>
+</div>
+<h4 class="font-pixel text-[9px] text-[#fcf2e3] leading-tight mb-1 day-name">CYBER UTILITY</h4>
+<div class="flex space-x-1 mb-1.5">
+<span class="w-3 h-2 bg-[#4d5f47] border border-black/60 inline-block" title="Olive"></span>
+<span class="w-3 h-2 bg-[#8c7865] border border-black/60 inline-block" title="Tan"></span>
+<span class="w-3 h-2 bg-[#17130e] border border-black/60 inline-block" title="Dark"></span>
+</div>
+<p class="font-terminal text-xs text-[#f5ece1] leading-snug mb-2 day-items">Olive cargos, tactical harness vest, silver link chains.</p>
+</div>
+<div>
+<div class="w-full h-1 bg-[#28221b] border border-[#524435] mb-1">
+<div class="h-full bg-[#dfd0bc] day-bar" style="width: 86%"></div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-pixel text-[#d7c3af]">
+<span>SCORE: <span class="text-white day-score">86%</span></span>
+<span class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity">SPIN ↺</span>
+</div>
+</div>
+</div>
+<!-- DAY 4: THU -->
+<div class="day-card bg-[#17130e]/90 border border-[#8c7865] hover:border-sky-300 p-2.5 flex flex-col justify-between transition-all cursor-pointer shadow-sm relative group" data-day-index="3">
+<div>
+<div class="flex items-center justify-between border-b border-[#827260]/60 pb-1 mb-1.5">
+<span class="font-pixel text-[9px] text-sky-300 font-bold">THU // 04</span>
+<span class="font-pixel text-[8px] px-1 py-0.2 bg-[#28221b] text-[#fcf2e3] border border-[#dfd0bc]/40 day-status">APPROVED</span>
+</div>
+<h4 class="font-pixel text-[9px] text-[#fcf2e3] leading-tight mb-1 day-name">TOASTED KNITWEAR</h4>
+<div class="flex space-x-1 mb-1.5">
+<span class="w-3 h-2 bg-[#785a3c] border border-black/60 inline-block" title="Amber"></span>
+<span class="w-3 h-2 bg-[#f4dfca] border border-black/60 inline-block" title="Cream"></span>
+<span class="w-3 h-2 bg-[#3f4850] border border-black/60 inline-block" title="Slate"></span>
+</div>
+<p class="font-terminal text-xs text-[#f5ece1] leading-snug mb-2 day-items">Earth-tone mohair sweater, relaxed corduroy trousers.</p>
+</div>
+<div>
+<div class="w-full h-1 bg-[#28221b] border border-[#524435] mb-1">
+<div class="h-full bg-sky-300 day-bar" style="width: 91%"></div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-pixel text-[#d7c3af]">
+<span>SCORE: <span class="text-white day-score">91%</span></span>
+<span class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity">SPIN ↺</span>
+</div>
+</div>
+</div>
+<!-- DAY 5: FRI -->
+<div class="day-card bg-[#17130e]/90 border border-[#8c7865] hover:border-sky-300 p-2.5 flex flex-col justify-between transition-all cursor-pointer shadow-sm relative group" data-day-index="4">
+<div>
+<div class="flex items-center justify-between border-b border-[#827260]/60 pb-1 mb-1.5">
+<span class="font-pixel text-[9px] text-sky-300 font-bold">FRI // 05</span>
+<span class="font-pixel text-[8px] px-1 py-0.2 bg-[#28221b] text-sky-200 border border-sky-400/60 day-status">ELITE PICK</span>
+</div>
+<h4 class="font-pixel text-[9px] text-[#fcf2e3] leading-tight mb-1 day-name">BIKER REBEL</h4>
+<div class="flex space-x-1 mb-1.5">
+<span class="w-3 h-2 bg-[#3b2b23] border border-black/60 inline-block" title="Brown"></span>
+<span class="w-3 h-2 bg-[#1f1b15] border border-black/60 inline-block" title="Black"></span>
+<span class="w-3 h-2 bg-[#ba1a1a] border border-black/60 inline-block" title="Crimson"></span>
+</div>
+<p class="font-terminal text-xs text-[#f5ece1] leading-snug mb-2 day-items">Distressed leather bomber, vintage tee, heavy combat boots.</p>
+</div>
+<div>
+<div class="w-full h-1 bg-[#28221b] border border-[#524435] mb-1">
+<div class="h-full bg-sky-400 day-bar" style="width: 96%"></div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-pixel text-[#d7c3af]">
+<span>SCORE: <span class="text-white day-score">96%</span></span>
+<span class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity">SPIN ↺</span>
+</div>
+</div>
+</div>
+<!-- DAY 6: SAT -->
+<div class="day-card bg-[#17130e]/90 border border-[#8c7865] hover:border-sky-300 p-2.5 flex flex-col justify-between transition-all cursor-pointer shadow-sm relative group" data-day-index="5">
+<div>
+<div class="flex items-center justify-between border-b border-[#827260]/60 pb-1 mb-1.5">
+<span class="font-pixel text-[9px] text-sky-300 font-bold">SAT // 06</span>
+<span class="font-pixel text-[8px] px-1 py-0.2 bg-[#28221b] text-[#fcf2e3] border border-[#dfd0bc]/40 day-status">APPROVED</span>
+</div>
+<h4 class="font-pixel text-[9px] text-[#fcf2e3] leading-tight mb-1 day-name">STREET RUNNER</h4>
+<div class="flex space-x-1 mb-1.5">
+<span class="w-3 h-2 bg-[#1e3a5f] border border-black/60 inline-block" title="Navy"></span>
+<span class="w-3 h-2 bg-[#38bdf8] border border-black/60 inline-block" title="Cyan"></span>
+<span class="w-3 h-2 bg-[#dfd0bc] border border-black/60 inline-block" title="Beige"></span>
+</div>
+<p class="font-terminal text-xs text-[#f5ece1] leading-snug mb-2 day-items">Cropped zip hoodie, tonal track pants, chunky retro sneakers.</p>
+</div>
+<div>
+<div class="w-full h-1 bg-[#28221b] border border-[#524435] mb-1">
+<div class="h-full bg-sky-300 day-bar" style="width: 89%"></div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-pixel text-[#d7c3af]">
+<span>SCORE: <span class="text-white day-score">89%</span></span>
+<span class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity">SPIN ↺</span>
+</div>
+</div>
+</div>
+<!-- DAY 7: SUN -->
+<div class="day-card bg-[#17130e]/90 border border-[#8c7865] hover:border-sky-300 p-2.5 flex flex-col justify-between transition-all cursor-pointer shadow-sm relative group" data-day-index="6">
+<div>
+<div class="flex items-center justify-between border-b border-[#827260]/60 pb-1 mb-1.5">
+<span class="font-pixel text-[9px] text-sky-300 font-bold">SUN // 07</span>
+<span class="font-pixel text-[8px] px-1 py-0.2 bg-[#28221b] text-[#f4dfca] border border-[#dfd0bc]/40 day-status">WEEKEND PASS</span>
+</div>
+<h4 class="font-pixel text-[9px] text-[#fcf2e3] leading-tight mb-1 day-name">CHIC LOUNGE</h4>
+<div class="flex space-x-1 mb-1.5">
+<span class="w-3 h-2 bg-[#695949] border border-black/60 inline-block" title="Taupe"></span>
+<span class="w-3 h-2 bg-[#d7c3af] border border-black/60 inline-block" title="Sand"></span>
+<span class="w-3 h-2 bg-[#ffffff] border border-black/60 inline-block" title="White"></span>
+</div>
+<p class="font-terminal text-xs text-[#f5ece1] leading-snug mb-2 day-items">Cashmere oatmeal knitwear, tailored sweats, wool overcoat.</p>
+</div>
+<div>
+<div class="w-full h-1 bg-[#28221b] border border-[#524435] mb-1">
+<div class="h-full bg-[#dfd0bc] day-bar" style="width: 85%"></div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-pixel text-[#d7c3af]">
+<span>SCORE: <span class="text-white day-score">85%</span></span>
+<span class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity">SPIN ↺</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Tribunal Advisory Memo -->
+<div class="mt-4 pt-2.5 border-t border-[#dfd0bc]/30 flex flex-wrap items-center justify-between text-xs font-terminal text-[#d7c3af] gap-2 bg-[#17130e]/80 p-2.5 border border-[#827260]/40">
+<div class="flex items-center space-x-2">
+<span class="text-sky-300 font-pixel text-[9px]">ORACLE MEMO:</span>
+<span class="text-[#fcf2e3]">Every morning spin re-calibrates courtroom probability. Violations trigger prompt fashion magistrate citation.</span>
+</div>
+<div class="flex items-center space-x-3 font-pixel text-[9px]">
+<span class="text-sky-300">JACKPOT MULTIPLIER: 3.5X</span>
+<span class="text-amber-300">RNG: CERTIFIED FAIR</span>
+</div>
+</div>
+</div>
+</div></section>
+<!-- END: RETRO LUCKY WHEEL MODULE -->
+</main>
+<!-- END: MainStudioView -->
+<!-- BEGIN: BottomStatusTicker -->
+<footer class="w-full relative z-30 py-2.5 px-4 bg-[#181d22]/90 border-t border-[#dfd0bc]/30 backdrop-blur-sm shadow-[0_-4px_20px_rgba(2,132,199,0.15)]" data-purpose="bottom-ticker">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-[#f4dfca] font-terminal gap-2">
+<div class="flex items-center space-x-2">
+<span class="inline-block w-2 h-2 bg-sky-300 rounded-full animate-ping"></span>
+<span class="text-sky-300 font-pixel text-[9px] font-bold">LATEST VERDICT:</span>
+<span class="text-white">User @NeonDrifter got 9.4/10 ("Certified Street Royalty")</span>
+</div>
+<div class="flex items-center space-x-4 text-[#d7c3af] text-xs">
+<span class="">PRESS [SPACE] TO SCAN</span>
+<span class="text-sky-400">•</span>
+<span class="text-[#fcf2e3] font-bold">STYLU DIGITAL // 2026</span>
+</div>
+</div>
+</footer>
+<!-- END: BottomStatusTicker -->
+<!-- Interactive Demo Behaviors -->
+<script data-purpose="crt-interactivity">
+    // TV Buttons Interactivity
+    const powerBtn = document.getElementById('btn-power');
+    const chUpBtn = document.getElementById('btn-ch-up');
+    const chDownBtn = document.getElementById('btn-ch-down');
+    const muteBtn = document.getElementById('btn-mute');
+    const crtScreen = document.getElementById('crt-screen');
+    const audioToggle = document.getElementById('audio-toggle');
+    const audioStatus = document.getElementById('audio-status');
+    const scanlineToggle = document.getElementById('scanline-toggle');
+    const scanlineStatus = document.getElementById('scanline-status');
+    const fileInput = document.getElementById('fit-photo-upload');
+
+    let isPowered = true;
+    let channelIndex = 4;
+    const channels = [
+      "CH 01 : 90s MALL COP",
+      "CH 02 : HARAJUKU ELITE",
+      "CH 03 : VINTAGE THRIFT KING",
+      "CH 04 : STRICT AUNTIE",
+      "CH 05 : RUNWAY CZAR"
+    ];
+
+    // Power Toggle
+    powerBtn.addEventListener('click', () => {
+      isPowered = !isPowered;
+      if (!isPowered) {
+        crtScreen.style.filter = 'brightness(0)';
+        crtScreen.style.transition = 'filter 0.2s cubic-bezier(0.1, 0.9, 0.2, 1)';
+      } else {
+        crtScreen.style.filter = 'brightness(1)';
+      }
+    });
+
+    // Channel Stepping
+    chUpBtn.addEventListener('click', () => {
+      if (!isPowered) return;
+      channelIndex = (channelIndex + 1) % channels.length;
+      updateChannelHUD();
+    });
+
+    chDownBtn.addEventListener('click', () => {
+      if (!isPowered) return;
+      channelIndex = (channelIndex - 1 + channels.length) % channels.length;
+      updateChannelHUD();
+    });
+
+    function updateChannelHUD() {
+      const hudBadge = crtScreen.querySelector('span');
+      if (hudBadge) {
+        hudBadge.textContent = channels[channelIndex];
+      }
+    }
+
+    // Mute Button / Static toggle
+    muteBtn.addEventListener('click', () => {
+      crtScreen.classList.toggle('grayscale');
+    });
+
+    // Settings & Audio / Scanline handled by backend-integration.js
+    const topSettingsBtn = document.getElementById('top-settings-btn');
+    if (topSettingsBtn) {
+      topSettingsBtn.addEventListener('click', () => {
+        if (typeof window.openSettingsModal === 'function') {
+          window.openSettingsModal();
+        }
+      });
+    }
+
+    const menuItemSettings = document.getElementById('menu-item-settings') || document.querySelector('[data-purpose="menu-item-settings"]');
+    if (menuItemSettings) {
+      menuItemSettings.addEventListener('click', () => {
+        if (typeof window.openSettingsModal === 'function') {
+          window.openSettingsModal();
+        }
+      });
+    }
+
+    // File Upload handling demo preview inside CRT
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const dropzonePrompt = document.querySelector('[data-purpose="interactive-screen-content"] label');
+          if (dropzonePrompt) {
+            dropzonePrompt.innerHTML = `
+              <div class="relative w-full h-32 md:h-44 rounded overflow-hidden border border-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.5)]">
+                <img src="${evt.target.result}" alt="Uploaded Outfit Evidence" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-sky-900/20 mix-blend-color"></div>
+                <div class="absolute bottom-1 right-1 bg-black/80 px-2 py-0.5 text-[9px] font-pixel text-sky-300">SCANNING 100%</div>
+              </div>
+              <p class="font-pixel text-[10px] text-sky-300 mt-2">CASE FILED // JURY DELIBERATING</p>
+            `;
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // ==============================================================
+    // RETRO LUCKY WHEEL RANDOMIZER LOGIC & SOUND SIMULATION
+    // ==============================================================
+    const wheelTurntable = document.getElementById('wheel-turntable');
+    const spinTodayBtn = document.getElementById('btn-spin-today');
+    const spinCenterBtn = document.getElementById('wheel-center-spin-btn');
+    const autoWeekBtn = document.getElementById('btn-auto-week');
+    const dayCards = document.querySelectorAll('.day-card');
+
+    const oracleCodeTitle = document.getElementById('oracle-code-title');
+    const oracleDaySlot = document.getElementById('oracle-day-slot');
+    const oracleCodeDesc = document.getElementById('oracle-code-desc');
+    const oracleScoreTag = document.getElementById('oracle-score-tag');
+    const oracleRule = document.getElementById('oracle-rule');
+    const oracleCrime = document.getElementById('oracle-crime');
+    const verdictBox = document.getElementById('oracle-verdict-box');
+
+    // 7 Dresscode Segment Definitions
+    const dresscodeData = [
+      {
+        day: "MON",
+        fullName: "MONDAY",
+        title: "NEO-TAILORED",
+        score: "88%",
+        desc: "Sharp blazers, pleated wide-leg trousers, and sleek structured leather accessories.",
+        rule: "Keep silhouette sharp; cuff clean & tuck shirt line",
+        crime: "Wrinkled collars or unpolished footwear",
+        swatches: ["#006194", "#3f4850", "#eae1d2"],
+        items: "Sharp structured blazer, pleated wide trousers, leather tote.",
+        status: "APPROVED"
+      },
+      {
+        day: "TUE",
+        fullName: "TUESDAY",
+        title: "WASHED DENIM GOD",
+        score: "94%",
+        desc: "Double denim ensemble with faded vintage wash, boxy tee, and chunky dark loafers.",
+        rule: "Ensure distinct contrasting denim tones or strict matching set",
+        crime: "Skinny jeans or overly distress knee rips",
+        swatches: ["#0284c7", "#e0f2fe", "#1f1b15"],
+        items: "Layered washed denim, boxy tee, chunky loafers.",
+        status: "LOCKED IN"
+      },
+      {
+        day: "WED",
+        fullName: "WEDNESDAY",
+        title: "CYBER UTILITY",
+        score: "86%",
+        desc: "Tactical olive cargos, modular chest rig/harness, and silver industrial link chains.",
+        rule: "Balance high pocket count with clean unadorned upper layer",
+        crime: "Neon safety vests without aesthetic cohesion",
+        swatches: ["#4d5f47", "#8c7865", "#17130e"],
+        items: "Olive cargos, tactical harness vest, silver link chains.",
+        status: "MANDATORY"
+      },
+      {
+        day: "THU",
+        fullName: "THURSDAY",
+        title: "TOASTED KNITWEAR",
+        score: "91%",
+        desc: "Earth-tone mohair sweater, relaxed wide corduroy pants, and minimal suede mules.",
+        rule: "Textural contrast is paramount; pair fuzzy knit with rigid ribbing",
+        crime: "Synthetic scratchy polyester fleece blends",
+        swatches: ["#785a3c", "#f4dfca", "#3f4850"],
+        items: "Earth-tone mohair sweater, relaxed corduroy trousers.",
+        status: "APPROVED"
+      },
+      {
+        day: "FRI",
+        fullName: "FRIDAY",
+        title: "BIKER REBEL",
+        score: "96%",
+        desc: "Distressed vintage leather motorcycle jacket, band tee, and heavy lug combat boots.",
+        rule: "Hardware silver zippers must catch light; broken-in patina required",
+        crime: "Brand new faux plastic pleather sheen",
+        swatches: ["#3b2b23", "#1f1b15", "#ba1a1a"],
+        items: "Distressed leather bomber, vintage tee, heavy combat boots.",
+        status: "ELITE PICK"
+      },
+      {
+        day: "SAT",
+        fullName: "SATURDAY",
+        title: "STREET RUNNER",
+        score: "89%",
+        desc: "Cropped heavyweight zip hoodie, tonal relaxed nylon track pants, and chunky runners.",
+        rule: "Stack socks neatly over sneaker collars with 90s proportions",
+        crime: "Gym rat neon ankle compression socks",
+        swatches: ["#1e3a5f", "#38bdf8", "#dfd0bc"],
+        items: "Cropped zip hoodie, tonal track pants, chunky retro sneakers.",
+        status: "APPROVED"
+      },
+      {
+        day: "SUN",
+        fullName: "SUNDAY",
+        title: "CHIC LOUNGE",
+        score: "85%",
+        desc: "Cashmere oatmeal knit sweater, tailored tonal sweats, and fluid wool overcoat.",
+        rule: "Monochromatic palette from cream to toasted cappuccino",
+        crime: "Faded logo gym shorts or stained loungewear",
+        swatches: ["#695949", "#d7c3af", "#ffffff"],
+        items: "Cashmere oatmeal knitwear, tailored sweats, wool overcoat.",
+        status: "WEEKEND PASS"
+      }
+    ];
+
+    let currentRotation = 0;
+    let isSpinning = false;
+    let targetDayIndex = 1; // Default Tuesday
+
+    // Synthesized Web Audio Beep / Tick Sound (No external audio file dependencies)
+    let audioCtx = null;
+    function playRetroBeep(freq = 440, type = 'square', duration = 0.05) {
+      if (audioStatus.textContent.trim() === 'MUTED') return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (err) {
+        // AudioContext restricted before first gesture
+      }
+    }
+
+    function spinToSegment(segmentIndex, daySlotIndex = null) {
+      if (isSpinning) return;
+      isSpinning = true;
+
+      if (daySlotIndex === null) daySlotIndex = targetDayIndex;
+      targetDayIndex = daySlotIndex;
+
+      // Wheel slices are ~51.428 degrees each.
+      // Arrow is at Top (0 degrees).
+      // When wheel rotates by R, the segment passing top is (360 - (R % 360)).
+      // Segment `segmentIndex` centers around: segmentIndex * 51.428 + 25.714
+      const sliceSize = 360 / 7;
+      const targetCenterAngle = (segmentIndex * sliceSize) + (sliceSize / 2);
+      
+      // Calculate rotation that places targetCenterAngle under the 0-degree top pointer
+      const fullRotations = 360 * 6; // 6 spins
+      const currentRemainder = currentRotation % 360;
+      let desiredAngle = (360 - targetCenterAngle) % 360;
+      let additional = desiredAngle - currentRemainder;
+      if (additional <= 0) additional += 360;
+
+      currentRotation += fullRotations + additional;
+      wheelTurntable.style.transform = `rotate(${currentRotation}deg)`;
+
+      // Play rapid slot ticks during spin
+      let ticks = 0;
+      const tickInterval = setInterval(() => {
+        ticks++;
+        playRetroBeep(450 + (ticks % 7) * 40, 'square', 0.03);
+        if (ticks > 24) clearInterval(tickInterval);
+      }, 150);
+
+      setTimeout(() => {
+        isSpinning = false;
+        playRetroBeep(880, 'sine', 0.18);
+        applyOutcome(segmentIndex, daySlotIndex);
+      }, 4200);
+    }
+
+    function applyOutcome(codeIndex, dayIndex) {
+      const code = dresscodeData[codeIndex];
+      const targetDay = dresscodeData[dayIndex];
+
+      // Update Live Readout Box
+      oracleCodeTitle.textContent = `${targetDay.day} // ${code.title}`;
+      oracleDaySlot.textContent = `ASSIGNED TO: ${targetDay.fullName}`;
+      oracleCodeDesc.textContent = code.desc;
+      oracleScoreTag.textContent = `DRIP: ${code.score}`;
+      oracleRule.textContent = code.rule;
+      oracleCrime.textContent = code.crime;
+
+      verdictBox.classList.remove('slot-tick');
+      void verdictBox.offsetWidth; // trigger reflow
+      verdictBox.classList.add('slot-tick');
+
+      // Update Target Day Card
+      const card = dayCards[dayIndex];
+      if (card) {
+        card.querySelector('.day-name').textContent = code.title;
+        card.querySelector('.day-items').textContent = code.items;
+        card.querySelector('.day-score').textContent = code.score;
+        card.querySelector('.day-bar').style.width = code.score;
+        card.querySelector('.day-status').textContent = code.status;
+
+        // Visual tick flash
+        card.classList.remove('slot-tick');
+        void card.offsetWidth;
+        card.classList.add('slot-tick');
+      }
+
+      if (typeof window.triggerWheelBlast === 'function') {
+        window.triggerWheelBlast(code, dayIndex);
+      }
+    }
+
+    // Spin for today button
+    spinTodayBtn.addEventListener('click', () => {
+      const randomIdx = Math.floor(Math.random() * 7);
+      spinToSegment(randomIdx, 1); // 1 is Tuesday (Today)
+    });
+
+    // Spin hub button
+    spinCenterBtn.addEventListener('click', () => {
+      const randomIdx = Math.floor(Math.random() * 7);
+      spinToSegment(randomIdx, targetDayIndex);
+    });
+
+    // Auto-generate full 7 days sequence
+    autoWeekBtn.addEventListener('click', () => {
+      if (isSpinning) return;
+      playRetroBeep(520, 'square', 0.1);
+
+      // Randomize an order of 7 dresscodes and tick all 7 cards with stagger
+      const shuffledCodes = [...dresscodeData].sort(() => 0.5 - Math.random());
+
+      dayCards.forEach((card, idx) => {
+        setTimeout(() => {
+          const code = shuffledCodes[idx];
+          card.querySelector('.day-name').textContent = code.title;
+          card.querySelector('.day-items').textContent = code.items;
+          card.querySelector('.day-score').textContent = code.score;
+          card.querySelector('.day-bar').style.width = code.score;
+          card.querySelector('.day-status').textContent = code.status;
+
+          card.classList.remove('slot-tick');
+          void card.offsetWidth;
+          card.classList.add('slot-tick');
+          playRetroBeep(320 + idx * 75, 'sine', 0.06);
+
+          if (idx === 1) {
+            // Also sync verdict display with today's fit
+            oracleCodeTitle.textContent = `TUE // ${code.title}`;
+            oracleDaySlot.textContent = `ASSIGNED TO: TUESDAY`;
+            oracleCodeDesc.textContent = code.desc;
+            oracleScoreTag.textContent = `DRIP: ${code.score}`;
+            oracleRule.textContent = code.rule;
+            oracleCrime.textContent = code.crime;
+          }
+        }, idx * 160);
+      });
+    });
+
+    // Day card click targets that day and spins the wheel for it
+    dayCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        if (isSpinning) return;
+        const dayIdx = parseInt(card.getAttribute('data-day-index'), 10);
+        targetDayIndex = dayIdx;
+        const randomIdx = Math.floor(Math.random() * 7);
+        spinToSegment(randomIdx, dayIdx);
+      });
+    });
+  </script>
+  <!-- Backend API Integration -->
+  <script src="/assets/backend-integration.js"></script>
+</body></html>

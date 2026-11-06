@@ -1,0 +1,531 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Outfit Court // 90s TV Broadcast Studio</title>
+<!-- Google Fonts: Press Start 2P & VT323 -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=VT323&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            pixel: ['"Press Start 2P"', 'monospace'],
+            terminal: ['"VT323"', 'monospace']
+          },
+          colors: {
+            court: {
+              cyan: '#3CC8D8',
+              pink: '#E8409C',
+              darkPlum: '#12091A',
+              cardPlum: '#190e24',
+              lavender: '#B9A6E8',
+              tvBody: '#2B2E33',
+              tvRim: '#1A1C1E',
+              tvScreen: '#0d181c'
+            }
+          },
+          boxShadow: {
+            'pixel-card': '5px 5px 0px 0px #B9A6E8',
+            'pixel-btn': '4px 4px 0px 0px rgba(185, 166, 232, 0.95)',
+            'pixel-btn-hover': '2px 2px 0px 0px #3CC8D8',
+            'crt-inner': 'inset 0 0 45px rgba(0, 0, 0, 0.95), inset 0 0 10px rgba(60, 200, 216, 0.3)'
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom CSS for Tie-Dye Backdrop & Scanlines -->
+<style data-purpose="background-atmosphere">
+    body {
+      background-color: #0b0712;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* 90s Marbled Tie-Dye Clouds Backdrop matching Reference Image */
+    .retro-clouds-bg {
+      background: 
+        radial-gradient(circle at 18% 22%, rgba(232, 64, 156, 0.65) 0%, transparent 45%),
+        radial-gradient(circle at 82% 28%, rgba(60, 200, 216, 0.70) 0%, transparent 42%),
+        radial-gradient(circle at 50% 50%, rgba(25, 14, 40, 0.85) 0%, transparent 70%),
+        radial-gradient(circle at 25% 80%, rgba(60, 200, 216, 0.60) 0%, transparent 40%),
+        radial-gradient(circle at 85% 82%, rgba(232, 64, 156, 0.65) 0%, transparent 45%),
+        radial-gradient(circle at 50% 10%, rgba(185, 166, 232, 0.40) 0%, transparent 35%),
+        linear-gradient(135deg, #1b0a2a 0%, #0d2b38 50%, #20072b 100%);
+      background-blend-mode: screen, screen, normal, screen, screen, soft-light, normal;
+      background-attachment: fixed;
+    }
+
+    /* Ambient noise & analog broadcast scanline shimmer */
+    .scanlines-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.32) 50%,
+        rgba(0, 0, 0, 0.32)
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+
+    .crt-glass-glare {
+      background: linear-gradient(125deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 30%, transparent 55%);
+      pointer-events: none;
+    }
+  </style>
+<!-- Custom CSS for CRT Bevels and Pixel Borders -->
+<style data-purpose="crt-and-borders">
+    /* CRT Chassis 3D Bevel effect */
+    .crt-housing {
+      box-shadow: 
+        -4px -4px 0px 2px rgba(255, 255, 255, 0.12) inset,
+        4px 4px 0px 2px rgba(0, 0, 0, 0.7) inset,
+        0 15px 35px rgba(0, 0, 0, 0.85),
+        0 0 1px 1px #050608;
+    }
+
+    .crt-bezel-recess {
+      box-shadow: 
+        inset 5px 5px 10px rgba(0, 0, 0, 0.95),
+        inset -3px -3px 8px rgba(255, 255, 255, 0.08),
+        0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    /* Tactical Pixel Arcade Button Hover Translation */
+    .arcade-btn {
+      transition: transform 0.07s ease, box-shadow 0.07s ease;
+    }
+    .arcade-btn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px 0px #3CC8D8;
+    }
+    .arcade-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0px 0px 0px 0px transparent;
+    }
+
+    /* Blinking CRT Upload Prompt */
+    @keyframes crtBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0.15; }
+    }
+    .crt-blink {
+      animation: crtBlink 1.1s infinite steps(1);
+    }
+
+    /* Subtle CRT screen flutter */
+    @keyframes crtFlicker {
+      0% { opacity: 0.98; }
+      50% { opacity: 1; }
+      100% { opacity: 0.99; }
+    }
+    .crt-flicker {
+      animation: crtFlicker 0.15s infinite;
+    }
+  </style>
+</head>
+<body class="retro-clouds-bg text-slate-100 font-terminal selection:bg-court-pink selection:text-white relative min-h-screen flex flex-col justify-between">
+<!-- Scanline texture over entire viewport -->
+<div class="scanlines-overlay fixed inset-0 z-40"></div>
+<!-- BEGIN: TopBroadcastBar -->
+<header class="w-full relative z-30 pt-3 pb-2 px-4 md:px-8 border-b border-purple-900/40 bg-black/40 backdrop-blur-sm" data-purpose="top-broadcast-bar">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm">
+<!-- Left: VHS recording timestamp & channel info -->
+<div class="flex items-center space-x-3 text-slate-300">
+<span class="flex items-center space-x-1.5 text-red-500 font-pixel text-[10px] tracking-wider animate-pulse">
+<span class="w-2.5 h-2.5 rounded-full bg-red-600 inline-block shadow-[0_0_8px_#ef4444]"></span>
+<span class="">REC</span>
+</span>
+<span class="font-pixel text-[10px] text-court-cyan">● 00:24:19 [SP]</span>
+<span class="hidden sm:inline-block px-1.5 py-0.5 border border-pink-500/40 bg-pink-950/30 text-court-pink text-[10px] font-pixel">B&amp;E AIR // CH.04</span>
+</div>
+<!-- Center: Equalizer audio bars -->
+<div class="hidden lg:flex items-center space-x-1" title="Broadcast Audio Level">
+<span class="text-[10px] font-pixel text-slate-400 mr-1.5">AUDIO L/R</span>
+<div class="flex items-end space-x-0.5 h-3">
+<span class="w-1 bg-court-cyan h-1"></span>
+<span class="w-1 bg-court-cyan h-2"></span>
+<span class="w-1 bg-court-cyan h-3"></span>
+<span class="w-1 bg-green-400 h-2"></span>
+<span class="w-1 bg-yellow-400 h-2.5"></span>
+<span class="w-1 bg-court-pink h-1 animate-pulse"></span>
+</div>
+</div>
+<!-- Right: Sound / FX Switches matching studio controls -->
+<div class="flex items-center space-x-3 text-[11px] font-pixel">
+<button class="px-2 py-1 bg-court-tvBody hover:bg-slate-700 border border-slate-500 text-slate-200 transition-colors" data-purpose="audio-toggle-button" id="audio-toggle">
+          SOUND: <span class="text-court-cyan" id="audio-status">ON</span>
+</button>
+<button class="px-2 py-1 bg-court-tvBody hover:bg-slate-700 border border-slate-500 text-slate-200 transition-colors" data-purpose="scanline-toggle-button" id="scanline-toggle">
+          CRT: <span class="text-court-pink" id="scanline-status">HI-RES</span>
+</button>
+<!-- Photoshop indicator icon in bottom corner reference easter egg -->
+<span class="inline-flex items-center justify-center w-6 h-6 bg-sky-950 border border-sky-400 text-court-cyan text-[10px] font-bold font-sans">Ps</span>
+</div>
+</div>
+</header>
+<!-- END: TopBroadcastBar -->
+<!-- BEGIN: MainStudioView -->
+<main class="w-full max-w-7xl mx-auto px-4 py-4 md:py-6 relative z-20 flex-grow flex flex-col justify-center" data-purpose="studio-main-layout">
+<!-- Title Header: WELCOME TO OUTFIT COURT -->
+<div class="text-center mb-6 md:mb-8" data-purpose="header-banner">
+<h1 class="font-pixel text-lg sm:text-2xl md:text-3xl tracking-widest text-white drop-shadow-[0_0_12px_rgba(232,64,156,0.8)]">
+        WELCOME TO <span class="text-court-pink">OUTFIT</span> <span class="text-court-cyan">&amp;</span> <span class="text-court-cyan">COURT</span>
+</h1>
+<p class="font-pixel text-xs sm:text-sm text-sky-200 mt-2 tracking-widest italic">
+  "Style you with stylu"
+</p>
+</div>
+<!-- The 3-Zone Retro Workspace: Left Card, Center CRT TV, Right 7-Button Menu -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- ============================================== -->
+<!-- ZONE 1: LEFT PANEL - STUDIO / COURT POSITION   -->
+<!-- ============================================== -->
+<section class="lg:col-span-3 order-2 lg:order-1" data-purpose="left-court-card">
+<!-- Deep plum card with hard offset 2D shadow -->
+<article class="bg-court-cardPlum/95 border-2 border-purple-400/40 p-5 shadow-pixel-card rounded-none backdrop-blur-md relative">
+<!-- Top Badge -->
+<div class="border-b border-purple-800/80 pb-2 mb-3">
+<span class="font-pixel text-[10px] text-court-pink tracking-wider block">COURT POSITION // 001</span>
+</div>
+<!-- Bold Tagline -->
+<h2 class="font-pixel text-xs sm:text-sm leading-relaxed text-slate-100 uppercase mb-3">
+            WE ARE <span class="text-court-cyan underline decoration-court-pink decoration-2">FASHION MAGISTRATES</span>.
+          </h2>
+<!-- Descriptive Typewriter Copy -->
+<p class="text-slate-300 text-lg leading-snug mb-4 font-terminal">
+            Your drip is now under sworn testimony. Submit your fit for high-stakes AI judgment, survive the brutal roasts of 5 merciless judges, and stake your claim among the true Style Legends.
+          </p>
+<p class="text-slate-400 text-sm leading-relaxed mb-4 border-t border-purple-900/80 pt-2 font-terminal">
+            Upload your mirror selfie, choose your courtroom tier, and receive a notarized Fashion Bailiff verdict with full breakdown.
+          </p>
+<!-- Status Registry -->
+<div class="space-y-1.5 text-xs font-terminal border border-purple-900/80 p-2.5 bg-black/50 text-slate-300">
+<div class="flex justify-between">
+<span class="text-slate-400">CASE FILE:</span>
+<span class="text-court-cyan font-pixel text-[9px]">#8942-D</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">VERDICT ENGINE:</span>
+<span class="text-green-400 font-pixel text-[9px]">ONLINE v4.2</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-400">JURY PANEL:</span>
+<span class="text-court-pink font-pixel text-[9px]">SEATED (9/9)</span>
+</div>
+</div>
+<!-- Quick Item Assessment Chips -->
+<div class="mt-4 pt-3 border-t border-purple-900/60">
+<span class="block text-[10px] font-pixel text-slate-400 mb-2">EVIDENCE CATEGORIES:</span>
+<div class="grid grid-cols-2 gap-1.5 text-xs text-center font-terminal">
+<span class="bg-purple-950/80 border border-purple-700/60 py-1 px-1.5 text-slate-200">👔 TOPS / JACKETS</span>
+<span class="bg-purple-950/80 border border-purple-700/60 py-1 px-1.5 text-slate-200">👖 BOTTOMS / WAIST</span>
+<span class="bg-purple-950/80 border border-purple-700/60 py-1 px-1.5 text-slate-200">👟 FOOTWEAR</span>
+<span class="bg-purple-950/80 border border-purple-700/60 py-1 px-1.5 text-slate-200">🕶️ ACCESSORIES</span>
+</div>
+</div>
+</article>
+</section>
+<!-- ============================================== -->
+<!-- ZONE 2: CENTER - THE ICONIC RETRO CRT TV       -->
+<!-- ============================================== -->
+<section class="lg:col-span-6 order-1 lg:order-2 flex justify-center" data-purpose="center-crt-television">
+<!-- CRT Monitor Outer Casing (Dark charcoal gunmetal with 3D bevels) -->
+<div class="w-full max-w-[560px] bg-court-tvBody p-4 md:p-6 rounded-[32px] crt-housing border-4 border-[#1c1d20] relative" id="crt-frame">
+<!-- Top casing vent slits -->
+<div class="flex justify-center space-x-1.5 mb-2.5 opacity-40">
+<span class="w-8 h-1 bg-black rounded-full"></span>
+<span class="w-8 h-1 bg-black rounded-full"></span>
+<span class="w-8 h-1 bg-black rounded-full"></span>
+<span class="w-8 h-1 bg-black rounded-full"></span>
+<span class="w-8 h-1 bg-black rounded-full"></span>
+</div>
+<!-- CRT Inner Recessed Bezel -->
+<div class="bg-court-tvRim p-3 md:p-4 rounded-[26px] crt-bezel-recess relative">
+<!-- Glass Screen Container (Curved proportions) -->
+<div class="relative bg-court-tvScreen rounded-[22px] overflow-hidden aspect-[4/3] shadow-crt-inner crt-flicker border-2 border-black/80 flex flex-col justify-between p-3 md:p-4" id="crt-screen">
+<!-- Subtle CRT Glass Reflection Sheen -->
+<div class="crt-glass-glare absolute inset-0 z-20 pointer-events-none"></div>
+<!-- CRT Top Screen HUD Display -->
+<div class="relative z-10 flex justify-between items-start text-[10px] md:text-xs font-pixel text-court-cyan/90">
+<span class="bg-black/60 px-2 py-1 rounded border border-cyan-800/40">CH 04 : STRICT AUNTIE</span>
+<span class="text-court-pink animate-pulse bg-black/60 px-2 py-1 rounded border border-pink-800/40">AI JURY LIVE</span>
+</div>
+<!-- Screen Center: Interactive Upload / Test Pattern / Corgi Mascot -->
+<div class="relative z-10 my-auto text-center px-3" data-purpose="interactive-screen-content">
+<!-- Interactive Upload Dropzone Frame -->
+<label class="cursor-pointer group block border-2 border-dashed border-court-cyan hover:border-court-pink p-3 md:p-4 bg-black/45 backdrop-blur-xs transition-colors rounded-lg" for="fit-photo-upload">
+<!-- Stylized Retro Dog / Judge Icon representing the Reference Corgi -->
+<div class="w-28 h-28 md:w-32 md:h-32 mx-auto mb-2 relative flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRyKIAinztOdjtCV29zsufOPVCJF_h6RBtIpmVjaaU-JPGlfU8e46CxI6UxHfZqvhAEuromLeSFi4ylLgtRFwTZnyfcP9vX-koJZy_iCMK5f26jf3hWkCqtRhTTJEvNtY_4Wqa1dAU1d592LPj5Z-ARaBPjyUrPXEWC3cMw4zHtRUi2Tg1_1xirEd9hyqytwuevk-hfUwwiTANMJYHYekRimyEyfz08IjZ0_jN0IhQ--xK9F3bVE0jutIzOxUUTbgPZg" alt="Pixel art character in red puffer jacket and cap" class="w-full h-full object-cover rounded-lg border-2 border-court-cyan shadow-[0_0_15px_rgba(60,200,216,0.5)]"><span class="absolute bottom-1 right-2 w-3 h-3 bg-green-400 border-2 border-black rounded-full shadow-[0_0_8px_#4ade80]"></span></div>
+<!-- Blinking Prompt -->
+<div class="crt-blink text-court-cyan font-pixel text-[11px] md:text-xs tracking-wider mb-1">
+                    [ INSERT OUTFIT PHOTO ]
+                  </div>
+<p class="font-terminal text-sm md:text-base text-slate-300">
+                    CLICK TO BROWSE OR DRAG &amp; DROP FIT
+                  </p>
+<p class="font-terminal text-xs text-court-pink mt-0.5">
+                    SUPPORTS JPG, PNG, WEBP (MAX 10MB)
+                  </p>
+</label>
+<!-- Hidden file input for interactivity -->
+<input accept="image/*" class="hidden" id="fit-photo-upload" type="file">
+</div>
+<!-- Screen Footer Ticker -->
+<div class="relative z-10 flex justify-between items-center text-[9px] md:text-[10px] font-pixel text-slate-400 border-t border-cyan-900/40 pt-1.5">
+<span class="text-court-cyan">SIGNAL: 99.8%</span>
+<span class="truncate max-w-[200px] text-court-pink">VERDICT WAITING ON YOU...</span>
+<span class="text-slate-400">NTSC-U</span>
+</div>
+</div>
+<!-- End Glass Screen -->
+</div>
+<!-- End CRT Recessed Bezel -->
+<!-- Bottom Bezel Hardware Controls (Tactile 4 Physical Buttons matching reference image) -->
+<div class="mt-3.5 pt-1.5 flex items-center justify-between px-2" data-purpose="tv-hardware-buttons">
+<!-- Left Brand Badge -->
+<div class="flex items-center space-x-1.5">
+<span class="font-pixel text-[9px] tracking-wider text-slate-400">B&amp;E CRT-3000</span>
+<span class="w-2 h-2 rounded-full bg-red-600 shadow-[0_0_6px_#dc2626] inline-block" title="Power Standby"></span>
+</div>
+<!-- Inset Tactile Physical Square Buttons -->
+<div class="flex space-x-2 md:space-x-3 bg-black/50 p-1.5 rounded-md border border-slate-700/60">
+<!-- Button 1: Power -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-500 rounded text-[9px] font-pixel text-red-400 active:translate-y-0.5 shadow-sm hover:text-white flex items-center justify-center" id="btn-power" title="Power Cycle">
+                PWR
+              </button>
+<!-- Button 2: Channel UP -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-500 rounded text-[9px] font-pixel text-slate-200 active:translate-y-0.5 shadow-sm hover:text-court-cyan flex items-center justify-center" id="btn-ch-up" title="Channel Up">
+                CH▲
+              </button>
+<!-- Button 3: Channel DOWN -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-500 rounded text-[9px] font-pixel text-slate-200 active:translate-y-0.5 shadow-sm hover:text-court-cyan flex items-center justify-center" id="btn-ch-down" title="Channel Down">
+                CH▼
+              </button>
+<!-- Button 4: Menu / Mode -->
+<button class="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-b from-stone-700 to-stone-900 border border-stone-500 rounded text-[8px] font-pixel text-slate-200 active:translate-y-0.5 shadow-sm hover:text-court-pink flex items-center justify-center" id="btn-mute" title="Mute / Static">
+                MUTE
+              </button>
+</div>
+<!-- Small right headphone jack detail -->
+<div class="w-3.5 h-3.5 rounded-full bg-black border-2 border-stone-600" title="Phone Out"></div>
+</div>
+</div>
+</section>
+<!-- ============================================== -->
+<!-- ZONE 3: RIGHT - THE 7-ITEM ARCADE MENU STACK   -->
+<!-- ============================================== -->
+<nav aria-label="Arcade Main Menu" class="lg:col-span-3 order-3" data-purpose="right-arcade-menu">
+<ul class="space-y-2.5 sm:space-y-3">
+<!-- Item 01: START TRIAL -->
+<li class="">
+<button class="w-full text-left bg-court-darkPlum/90 border border-purple-400/80 p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-court-cyan" data-purpose="menu-item-1">
+<span class="font-pixel text-xs text-court-pink group-hover:text-court-cyan font-bold">01</span>
+<div>
+<h3 class="font-pixel text-[11px] text-white tracking-wide group-hover:text-court-cyan">START TRIAL</h3>
+<p class="font-terminal text-sm text-court-cyan/80 group-hover:text-white leading-tight">DROP YOUR OUTFIT</p>
+</div>
+</button>
+</li>
+<!-- Item 02: PICK A JUDGE -->
+<li class="">
+<button class="w-full text-left bg-court-darkPlum/90 border border-purple-400/80 p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-court-cyan" data-purpose="menu-item-2">
+<span class="font-pixel text-xs text-court-pink group-hover:text-court-cyan font-bold">02</span>
+<div>
+<h3 class="font-pixel text-[11px] text-white tracking-wide group-hover:text-court-cyan">PICK A JUDGE</h3>
+<p class="font-terminal text-sm text-court-cyan/80 group-hover:text-white leading-tight">CHOOSE YOUR CRITIC</p>
+</div>
+</button>
+</li>
+<!-- Item 03: MY CASES -->
+<li class="">
+<button class="w-full text-left bg-court-darkPlum/90 border border-purple-400/80 p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-court-cyan" data-purpose="menu-item-3">
+<span class="font-pixel text-xs text-court-pink group-hover:text-court-cyan font-bold">03</span>
+<div>
+<h3 class="font-pixel text-[11px] text-white tracking-wide group-hover:text-court-cyan">MY CASES</h3>
+<p class="font-terminal text-sm text-court-cyan/80 group-hover:text-white leading-tight">PAST VERDICTS &amp; BAIL</p>
+</div>
+</button>
+</li>
+<!-- Item 04: JURY VOTE -->
+<li class="">
+<button class="w-full text-left bg-court-darkPlum/90 border border-purple-400/80 p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-court-cyan" data-purpose="menu-item-4">
+<span class="font-pixel text-xs text-court-pink group-hover:text-court-cyan font-bold">04</span>
+<div>
+<h3 class="font-pixel text-[11px] text-white tracking-wide group-hover:text-court-cyan">JURY VOTE</h3>
+<p class="font-terminal text-sm text-court-cyan/80 group-hover:text-white leading-tight">FRIENDS WEIGH IN</p>
+</div>
+</button>
+</li>
+<!-- Item 05: HIGH SCORES -->
+<li class="">
+<button class="w-full text-left bg-court-darkPlum/90 border border-purple-400/80 p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-court-cyan" data-purpose="menu-item-5">
+<span class="font-pixel text-xs text-court-pink group-hover:text-court-cyan font-bold">05</span>
+<div>
+<h3 class="font-pixel text-[11px] text-white tracking-wide group-hover:text-court-cyan">HIGH SCORES</h3>
+<p class="font-terminal text-sm text-court-cyan/80 group-hover:text-white leading-tight">ARCADE LEADERBOARD</p>
+</div>
+</button>
+</li>
+<!-- Item 06: DAILY TRIAL -->
+<li class="">
+<button class="w-full text-left bg-court-darkPlum/90 border border-purple-400/80 p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-court-cyan" data-purpose="menu-item-6">
+<span class="font-pixel text-xs text-court-pink group-hover:text-court-cyan font-bold">06</span>
+<div>
+<h3 class="font-pixel text-[11px] text-white tracking-wide group-hover:text-court-cyan">DAILY TRIAL</h3>
+<p class="font-terminal text-sm text-court-cyan/80 group-hover:text-white leading-tight">STREAKS &amp; DUELS</p>
+</div>
+</button>
+</li>
+<!-- Item 07: SETTINGS -->
+<li class="">
+<button class="w-full text-left bg-court-darkPlum/90 border border-purple-400/80 p-2.5 shadow-pixel-btn arcade-btn group flex items-center space-x-3 rounded-none focus:outline-none focus:ring-1 focus:ring-court-cyan" data-purpose="menu-item-7">
+<span class="font-pixel text-xs text-court-pink group-hover:text-court-cyan font-bold">07</span>
+<div>
+<h3 class="font-pixel text-[11px] text-white tracking-wide group-hover:text-court-cyan">SETTINGS</h3>
+<p class="font-terminal text-sm text-court-cyan/80 group-hover:text-white leading-tight">SOUND, SCANLINES &amp; PRIVACY</p>
+</div>
+</button>
+</li>
+</ul>
+</nav>
+</div>
+</main>
+<!-- END: MainStudioView -->
+<!-- BEGIN: BottomStatusTicker -->
+<footer class="w-full relative z-30 py-2.5 px-4 bg-black/70 border-t border-purple-900/60 backdrop-blur-sm" data-purpose="bottom-ticker">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-terminal gap-2">
+<div class="flex items-center space-x-2">
+<span class="inline-block w-2 h-2 bg-court-cyan animate-ping"></span>
+<span class="text-court-cyan font-pixel text-[9px]">LATEST VERDICT:</span>
+<span class="text-slate-200">User @NeonDrifter got 9.4/10 ("Certified Street Royalty")</span>
+</div>
+<div class="flex items-center space-x-4 text-slate-400 text-xs">
+<span class="">PRESS [SPACE] TO SCAN</span>
+<span class="text-purple-400">•</span>
+<span class="text-court-pink">B&amp;E DIGITAL // OUTFIT COURT 2026</span>
+</div>
+</div>
+</footer>
+<!-- END: BottomStatusTicker -->
+<!-- Interactive Demo Behaviors -->
+<script data-purpose="crt-interactivity">
+    // TV Buttons Interactivity
+    const powerBtn = document.getElementById('btn-power');
+    const chUpBtn = document.getElementById('btn-ch-up');
+    const chDownBtn = document.getElementById('btn-ch-down');
+    const muteBtn = document.getElementById('btn-mute');
+    const crtScreen = document.getElementById('crt-screen');
+    const audioToggle = document.getElementById('audio-toggle');
+    const audioStatus = document.getElementById('audio-status');
+    const scanlineToggle = document.getElementById('scanline-toggle');
+    const scanlineStatus = document.getElementById('scanline-status');
+    const fileInput = document.getElementById('fit-photo-upload');
+
+    let isPowered = true;
+    let channelIndex = 4;
+    const channels = [
+      "CH 01 : 90s MALL COP",
+      "CH 02 : HARAJUKU ELITE",
+      "CH 03 : VINTAGE THRIFT KING",
+      "CH 04 : STRICT AUNTIE",
+      "CH 05 : RUNWAY CZAR"
+    ];
+
+    // Power Toggle
+    powerBtn.addEventListener('click', () => {
+      isPowered = !isPowered;
+      if (!isPowered) {
+        crtScreen.style.filter = 'brightness(0)';
+        crtScreen.style.transition = 'filter 0.2s cubic-bezier(0.1, 0.9, 0.2, 1)';
+      } else {
+        crtScreen.style.filter = 'brightness(1)';
+      }
+    });
+
+    // Channel Stepping
+    chUpBtn.addEventListener('click', () => {
+      if (!isPowered) return;
+      channelIndex = (channelIndex + 1) % channels.length;
+      updateChannelHUD();
+    });
+
+    chDownBtn.addEventListener('click', () => {
+      if (!isPowered) return;
+      channelIndex = (channelIndex - 1 + channels.length) % channels.length;
+      updateChannelHUD();
+    });
+
+    function updateChannelHUD() {
+      const hudBadge = crtScreen.querySelector('span');
+      if (hudBadge) {
+        hudBadge.textContent = channels[channelIndex];
+      }
+    }
+
+    // Mute Button / Static toggle
+    muteBtn.addEventListener('click', () => {
+      crtScreen.classList.toggle('grayscale');
+    });
+
+    // Audio status toggle
+    audioToggle.addEventListener('click', () => {
+      const current = audioStatus.textContent.trim();
+      if (current === 'ON') {
+        audioStatus.textContent = 'MUTED';
+        audioStatus.className = 'text-red-400';
+      } else {
+        audioStatus.textContent = 'ON';
+        audioStatus.className = 'text-court-cyan';
+      }
+    });
+
+    // Scanline / CRT resolution toggle
+    scanlineToggle.addEventListener('click', () => {
+      const overlay = document.querySelector('.scanlines-overlay');
+      if (scanlineStatus.textContent === 'HI-RES') {
+        scanlineStatus.textContent = 'ANALOG';
+        scanlineStatus.className = 'text-court-cyan';
+        overlay.style.opacity = '1';
+      } else {
+        scanlineStatus.textContent = 'HI-RES';
+        scanlineStatus.className = 'text-court-pink';
+        overlay.style.opacity = '0.35';
+      }
+    });
+
+    // File Upload handling demo preview inside CRT
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const dropzonePrompt = document.querySelector('[data-purpose="interactive-screen-content"] label');
+          if (dropzonePrompt) {
+            dropzonePrompt.innerHTML = `
+              <div class="relative w-full h-32 md:h-44 rounded overflow-hidden border border-court-cyan">
+                <img src="${evt.target.result}" alt="Uploaded Outfit Evidence" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-cyan-900/20 mix-blend-color"></div>
+                <div class="absolute bottom-1 right-1 bg-black/80 px-2 py-0.5 text-[9px] font-pixel text-court-cyan">SCANNING 100%</div>
+              </div>
+              <p class="font-pixel text-[10px] text-green-400 mt-2">CASE FILED // JURY DELIBERATING</p>
+            `;
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+
+
+
+
+
+</body></html>

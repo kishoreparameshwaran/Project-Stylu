@@ -1,0 +1,283 @@
+{
+  "name": "projects/3741489828161269655",
+  "title": "Outfit Court: Retro AI Stylist",
+  "visibility": "PRIVATE",
+  "createTime": "2026-10-23T05:03:24.204168Z",
+  "updateTime": "2026-10-23T05:35:07.989867Z",
+  "projectType": "TEXT_TO_UI_PRO",
+  "thumbnailScreenshot": {
+    "name": "projects/3741489828161269655/screens/242fd8cf677b4dbbab6408dd6bf08092/fileEntries/screenshot",
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1VEtKe3jNHgrFf9Lnpdl5BrNmvhOjpJY-VsgyjJbNEw7fuGviZ0imwDFBbp9xgChaqZAX6V91gFtG52KQO4FJoFHLogFZDHsoDTyCi8BIUb72XoKAEaOdxUScM38LUfXvWc-H5S8EpBDPHWUsaHctfehMZxm37iLwZdOPXBc6Pu6tLfdiTct40kj5uDg4xZNHiGhUode1Y2ZqwOMu3gGJA2OXFhCmF49j7ESBGdJqNUX6YaltGT21D1ow"
+  },
+  "origin": "STITCH",
+  "deviceType": "DESKTOP",
+  "designTheme": {
+    "colorMode": "LIGHT",
+    "font": "SPACE_GROTESK",
+    "customColor": "#0284c7",
+    "headlineFont": "SPACE_GROTESK",
+    "bodyFont": "SPACE_GROTESK",
+    "labelFont": "SPACE_MONO",
+    "namedColors": {
+      "secondary": "#00668a",
+      "secondary_container": "#40c2fd",
+      "surface_container_highest": "#dae2fd",
+      "on_tertiary_fixed_variant": "#004d66",
+      "primary_container": "#007bb9",
+      "on_surface_variant": "#3f4850",
+      "surface_container": "#eaedff",
+      "on_primary_fixed_variant": "#004b73",
+      "error": "#ba1a1a",
+      "on_secondary_container": "#004d6a",
+      "tertiary_fixed_dim": "#7bd1fa",
+      "primary_fixed": "#cce5ff",
+      "on_tertiary": "#ffffff",
+      "surface_bright": "#faf8ff",
+      "on_tertiary_fixed": "#001e2b",
+      "on_secondary": "#ffffff",
+      "inverse_on_surface": "#eef0ff",
+      "on_tertiary_container": "#fbfdff",
+      "outline_variant": "#bfc7d2",
+      "error_container": "#ffdad6",
+      "primary_fixed_dim": "#93ccff",
+      "on_primary": "#ffffff",
+      "tertiary_fixed": "#c0e8ff",
+      "inverse_surface": "#283044",
+      "surface_dim": "#d2d9f4",
+      "on_secondary_fixed_variant": "#004c69",
+      "on_primary_container": "#fdfcff",
+      "secondary_fixed_dim": "#7bd0ff",
+      "tertiary_container": "#0f7ea3",
+      "surface_container_high": "#e2e7ff",
+      "background": "#faf8ff",
+      "surface_container_low": "#f2f3ff",
+      "on_surface": "#131b2e",
+      "surface_variant": "#dae2fd",
+      "on_error": "#ffffff",
+      "on_background": "#131b2e",
+      "secondary_fixed": "#c4e7ff",
+      "outline": "#707881",
+      "surface_container_lowest": "#ffffff",
+      "on_primary_fixed": "#001d31",
+      "inverse_primary": "#93ccff",
+      "on_secondary_fixed": "#001e2c",
+      "primary": "#006194",
+      "on_error_container": "#93000a",
+      "tertiary": "#006483",
+      "surface_tint": "#006398",
+      "surface": "#faf8ff"
+    },
+    "designMd": "---\nname: Aether Arcade\ncolors:\n  surface: '#faf8ff'\n  surface-dim: '#d2d9f4'\n  surface-bright: '#faf8ff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f2f3ff'\n  surface-container: '#eaedff'\n  surface-container-high: '#e2e7ff'\n  surface-container-highest: '#dae2fd'\n  on-surface: '#131b2e'\n  on-surface-variant: '#3f4850'\n  inverse-surface: '#283044'\n  inverse-on-surface: '#eef0ff'\n  outline: '#707881'\n  outline-variant: '#bfc7d2'\n  surface-tint: '#006398'\n  primary: '#006194'\n  on-primary: '#ffffff'\n  primary-container: '#007bb9'\n  on-primary-container: '#fdfcff'\n  inverse-primary: '#93ccff'\n  secondary: '#00668a'\n  on-secondary: '#ffffff'\n  secondary-container: '#40c2fd'\n  on-secondary-container: '#004d6a'\n  tertiary: '#006483'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#0f7ea3'\n  on-tertiary-container: '#fbfdff'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#cce5ff'\n  primary-fixed-dim: '#93ccff'\n  on-primary-fixed: '#001d31'\n  on-primary-fixed-variant: '#004b73'\n  secondary-fixed: '#c4e7ff'\n  secondary-fixed-dim: '#7bd0ff'\n  on-secondary-fixed: '#001e2c'\n  on-secondary-fixed-variant: '#004c69'\n  tertiary-fixed: '#c0e8ff'\n  tertiary-fixed-dim: '#7bd1fa'\n  on-tertiary-fixed: '#001e2b'\n  on-tertiary-fixed-variant: '#004d66'\n  background: '#faf8ff'\n  on-background: '#131b2e'\n  surface-variant: '#dae2fd'\ntypography:\n  display-hero:\n    fontFamily: Space Grotesk\n    fontSize: 56px\n    fontWeight: '700'\n    lineHeight: 64px\n    letterSpacing: -0.03em\n  display-hero-mobile:\n    fontFamily: Space Grotesk\n    fontSize: 36px\n    fontWeight: '700'\n    lineHeight: 44px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Space Grotesk\n    fontSize: 40px\n    fontWeight: '700'\n    lineHeight: 48px\n    letterSpacing: -0.02em\n  headline-lg-mobile:\n    fontFamily: Space Grotesk\n    fontSize: 28px\n    fontWeight: '700'\n    lineHeight: 36px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Space Grotesk\n    fontSize: 28px\n    fontWeight: '600'\n    lineHeight: 36px\n    letterSpacing: -0.01em\n  headline-sm:\n    fontFamily: Space Grotesk\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 28px\n    letterSpacing: 0em\n  title-md:\n    fontFamily: Space Grotesk\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 24px\n    letterSpacing: 0.01em\n  body-lg:\n    fontFamily: Space Grotesk\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 26px\n    letterSpacing: 0em\n  body-md:\n    fontFamily: Space Grotesk\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 22px\n    letterSpacing: 0em\n  label-lg:\n    fontFamily: Space Mono\n    fontSize: 14px\n    fontWeight: '700'\n    lineHeight: 20px\n    letterSpacing: 0.05em\n  label-md:\n    fontFamily: Space Mono\n    fontSize: 12px\n    fontWeight: '700'\n    lineHeight: 16px\n    letterSpacing: 0.08em\n  label-sm:\n    fontFamily: Space Mono\n    fontSize: 10px\n    fontWeight: '400'\n    lineHeight: 14px\n    letterSpacing: 0.1em\nspacing:\n  gutter: 1.5rem\n  gutter-mobile: 1rem\n  margin: 3rem\n  margin-mobile: 1.25rem\n  margin-tablet: 2rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system reimagines golden-age arcade computing through an ethereal, atmospheric lens. It merges high-energy coin-op nostalgia with luminous tropospheric clarity, exchanging heavy charcoal-and-neon palettes for crystalline sky blues, cloud whites, and deep midnight vacuum accents.\n\n### Design Movement: Ethereal Retro-Futurism & Neo-Arcade\n- **Aesthetic Pillars**: Crisp CRT beamlines, tactile pixel-stepped contours, diffuse daylight glows, and airy atmospheric elevation.\n- **Tone**: Playful yet pristine, technical yet luminous, dynamic, and nostalgic.\n- **Audience**: Creative technologists, indie game developers, retro computing enthusiasts, and modern gamers demanding crisp usability combined with tactile 80s/90s arcade soul.\n- **Sensory Metaphor**: Playing an immaculate Japanese cocktail arcade cabinet perched above an endless sea of bright cumulus clouds under direct high-altitude sunlight.\n\n## Colors\n\nThe color palette shifts retro computing into daylight. Light modes use crisp radiant whites layered over ice-blue atmospheres, structured by midnight-navy chassis tones for authentic CRT scan-beam contrast.\n\n### Palette Architecture\n- **Primary (`#0284c7`)**: High-saturation beam blue. Utilized for high-impact interactions, prominent arcade action prompts, and primary button fills.\n- **Secondary (`#38bdf8`)**: Stratosphere cyan. Used for glowing hover halos, active toggle states, scanline highlights, and illuminated borders.\n- **Tertiary (`#7dd3fc`)**: Soft neon sky. Delivers subtle phosphor halo diffusion, decorative pixel bevel highlights, and interactive feedback accents.\n- **Neutral Core (`#0f172a`)**: Deep vacuum midnight. Serves as high-contrast structural text, chassis boundaries, arcade frame shadows, and deep monitor recesses.\n- **Surface Foundations**:\n  - `surface-base`: `#ffffff` (Pure crisp white)\n  - `surface-cloud`: `#f0f9ff` (Soft atmospheric ice tint for cards, trays, and secondary bays)\n  - `surface-recess`: `#e0f2fe` (Sunken well for inset panels and CRT frame bezels)\n  - `surface-chassis`: `#0c192c` (Deep midnight container for specialized retro-terminal moments)\n\n## Typography\n\nThe typography unites mechanical retro data readouts with structural modernist geometry.\n\n- **Primary Display & Headings (`Space Grotesk`)**: Provides razor-sharp, geometric punchiness. Uppercase styling is preferred for milestone cards, arcade state headings, and level score banners.\n- **Technical Readouts & Micro-Data (`Space Mono`)**: Used across buttons, tabs, telemetry, inventory counts, and high-score labels. Emulates arcade ROM diagnostics and terminal broadcast telemetry.\n- **Pixel Styling Rules**: When rendering retro pixel accents (e.g., retro badges, scoreboards), pair uppercase `Space Mono` with stepped pixel-bracket decorations (`[ INSERT COIN ]` or `// LVL_09`). Keep body copy in clean, proportional `Space Grotesk` to safeguard readability against bright sky-tinted surfaces.\n\n## Layout & Spacing\n\nThe layout model is anchored by an uncompromising 12-column modular grid with mathematical, pixel-aligned spacing.\n\n### Structural Parameters\n- **Grid Hierarchy**:\n  - **Desktop (\u22651200px)**: 12-column fluid grid, max-width 1360px, 3rem margins, 1.5rem gutters.\n  - **Tablet (768px - 1199px)**: 8-column layout, 2rem margins, 1.25rem gutters.\n  - **Mobile (<768px)**: 4-column layout, 1.25rem margins, 1rem gutters.\n- **Rhythm Principle**: Spacing follows 4px and 8px stepped boundaries, honoring the pixel grid of vintage arcade monitors. Gaps between game panels, utility ribbons, and monitor consoles are strictly enforced through `space-md` (16px) and `space-lg` (24px) step increments.\n- **Panel Insets**: Surface cards utilize an internal pad of `space-md` or `space-lg`, ensuring pixel-corner borders do not crowd internal scan-lines and technical telemetry text.\n\n## Elevation & Depth\n\nVisual depth is achieved through tactile coin-op mechanical stepping combined with luminous phosphor ambient glows, replacing conventional blurred drop shadows.\n\n### Elevation Tiers\n- **Level 0 (Flat Ground)**: Base background `#ffffff` overlaid with a subtle 32px-square grid pattern in 8% opacity `#38bdf8`.\n- **Level 1 (Sub-Panel / Bay)**: Surfaces in `#f0f9ff` with a crisp 1px solid border of `#bae6fd` and an offset hard drop shadow: `3px 3px 0px #0c192c`.\n- **Level 2 (Active Arcade Cabinet / Card)**: Surfaces in `#ffffff` framed by a 2px stepped dual border: inner 1px `#38bdf8`, outer 2px `#0f172a`. Shadow profile: `4px 4px 0px #0f172a`, backed by a diffused sky-blue beam glow: `0px 8px 24px -4px rgba(56, 189, 248, 0.35)`.\n- **Level 3 (Modal / Overdrive Overlay)**: Outer frame bounded by a 3px `#0284c7` beam outline, hard shadow `6px 6px 0px #0c192c`, and a wide ambient atmospheric back-glow: `0px 16px 40px 0px rgba(2, 132, 199, 0.25)`.\n- **CRT Phosphor Glow Effect**: Interactive active elements feature an internal inset rim highlight: `inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 12px rgba(56, 189, 248, 0.2)`.\n\n## Shapes\n\nThis design system uses a strict **Sharp (`0`)** shape language to honor the authentic raster-and-pixel geometry of vintage arcade hardware.\n\n### Geometry Architecture\n- **Zero Radius**: All panels, buttons, cards, tags, and inputs maintain `0px` border-radius (`roundedness: 0`).\n- **Tactile Corner Notches**: Signature cards and primary interactive buttons may incorporate a 45-degree chamfered \"cut-corner\" (3px to 6px corner-cut via CSS clip-path) to evoke physical arcade PCB and chassis hardware modules.\n- **Pixel-Stepped Framing**: Decorative dividing lines and panel borders mimic 8-bit stepped logic, utilizing hard-pixel ticks (1px\u20132px step increments) instead of soft curves.\n\n## Components\n\n### Buttons\n- **Primary (\"Player 1 / Insert Coin\")**: Hard rectangular shape, solid `#0284c7` fill, text in `#ffffff` (`label-lg`, uppercase `Space Mono`). 2px solid `#0f172a` boundary. Hard mechanical shadow: `3px 3px 0px #0f172a`.\n  - *Hover*: Shift background to `#38bdf8`, sky-blue glow: `0 0 16px rgba(56, 189, 248, 0.6)`, shadow increases to `4px 4px 0px #0f172a`.\n  - *Active/Pressed*: Translate `+2px, +2px`, shadow drops to `1px 1px 0px #0f172a`.\n- **Secondary**: Crisp `#ffffff` fill, text in `#0284c7`, 2px solid `#38bdf8` border, shadow `2px 2px 0px #7dd3fc`.\n- **Ghost/Diagnostic**: Transparent fill, uppercase monospace text in `#0f172a`, bracketed icons (`[ START ]`).\n\n### Cards & Arcade Frames\n- Base in `#ffffff` or `#f0f9ff`.\n- Border: 2px solid `#0f172a`.\n- Header Strip: Deep midnight `#0c192c` title bar across card top with glowing sky-blue terminal text (`label-md`), accompanied by decorative mock pixel status lights (three 4x4px squares: white, sky-blue, midnight).\n- CRT Scanline Variant: Subtle horizontal scanline overlay rendered via repeating linear gradient (`rgba(15, 23, 42, 0.03)` every 3px).\n\n### Input Fields & Search Bars\n- Background: `#f0f9ff` (Ice white recess).\n- Border: 2px solid `#0f172a`.\n- Text: `Space Mono`, `#0f172a`. Placeholder: `#7dd3fc`.\n- Focus State: Border transitions to `#0284c7` with a glowing halo: `0 0 0 1px #0284c7, 0 0 12px rgba(56, 189, 248, 0.45)`. Caret blinks with sharp square block profile.\n\n### Chips & Telemetry Badges\n- Sharp rectangular tag with 1px border.\n- Background: `#ffffff` with `#38bdf8` outline and `#0284c7` monospace text.\n- High-priority state (e.g., \"1P READY\", \"HIGH SCORE\"): `#0c192c` background, `#38bdf8` text, accompanied by a pulsing 6px `#38bdf8` indicator block.\n\n### Checkboxes & Toggle Switches\n- **Checkbox**: 18x18px square box, 2px `#0f172a` border, white fill. When checked, displays a solid 8x8px `#0284c7` pixel center pip.\n- **Arcade Toggle**: Rectangular channel (`#e0f2fe`) with 2px `#0f172a` border. Slider head is a solid square block that snaps with instantaneous mechanical transition from midnight `#0f172a` (off) to glowing sky-blue `#38bdf8` (on).\n\n### Specialized Arcade Modules\n- **Broadcast Marquee Header**: Top navigation resembling arcade cabinet lightboards: crisp white background with sky-blue edge glow, illuminated status badges (`CREDITS 02`, `SOUND: STEREO`).\n- **Scan-Line CRT Viewport**: Containers displaying metrics, code, or game screens use subtle CRT phosphor curvature simulation, illuminated top-edge glare line (`1px solid rgba(255, 255, 255, 0.9)`), and high-contrast deep midnight recesses.",
+    "colorVariant": "FIDELITY",
+    "overridePrimaryColor": "#0284c7",
+    "overrideSecondaryColor": "#38bdf8",
+    "overrideTertiaryColor": "#7dd3fc",
+    "overrideNeutralColor": "#0f172a",
+    "spacingScale": 2,
+    "typography": {
+      "display-hero-mobile": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "36px",
+        "fontWeight": "700",
+        "lineHeight": "44px",
+        "letterSpacing": "-0.02em"
+      },
+      "headline-lg": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "40px",
+        "fontWeight": "700",
+        "lineHeight": "48px",
+        "letterSpacing": "-0.02em"
+      },
+      "label-lg": {
+        "fontFamily": "Space Mono",
+        "fontSize": "14px",
+        "fontWeight": "700",
+        "lineHeight": "20px",
+        "letterSpacing": "0.05em"
+      },
+      "display-hero": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "56px",
+        "fontWeight": "700",
+        "lineHeight": "64px",
+        "letterSpacing": "-0.03em"
+      },
+      "headline-sm": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px",
+        "letterSpacing": "0em"
+      },
+      "label-md": {
+        "fontFamily": "Space Mono",
+        "fontSize": "12px",
+        "fontWeight": "700",
+        "lineHeight": "16px",
+        "letterSpacing": "0.08em"
+      },
+      "headline-md": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "28px",
+        "fontWeight": "600",
+        "lineHeight": "36px",
+        "letterSpacing": "-0.01em"
+      },
+      "title-md": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "18px",
+        "fontWeight": "600",
+        "lineHeight": "24px",
+        "letterSpacing": "0.01em"
+      },
+      "body-md": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "22px",
+        "letterSpacing": "0em"
+      },
+      "label-sm": {
+        "fontFamily": "Space Mono",
+        "fontSize": "10px",
+        "fontWeight": "400",
+        "lineHeight": "14px",
+        "letterSpacing": "0.1em"
+      },
+      "headline-lg-mobile": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "28px",
+        "fontWeight": "700",
+        "lineHeight": "36px",
+        "letterSpacing": "-0.01em"
+      },
+      "body-lg": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "26px",
+        "letterSpacing": "0em"
+      }
+    },
+    "spacing": {
+      "margin": "3rem",
+      "space-xs": "0.25rem",
+      "margin-mobile": "1.25rem",
+      "gutter": "1.5rem",
+      "space-xl": "2.5rem",
+      "space-md": "1rem",
+      "margin-tablet": "2rem",
+      "space-lg": "1.5rem",
+      "space-sm": "0.5rem",
+      "gutter-mobile": "1rem"
+    },
+    "headlineFontFamily": "Space Grotesk",
+    "bodyFontFamily": "Space Grotesk",
+    "labelFontFamily": "Space Mono"
+  },
+  "screenInstances": [
+    {
+      "id": "242fd8cf677b4dbbab6408dd6bf08092",
+      "sourceScreen": "projects/3741489828161269655/screens/242fd8cf677b4dbbab6408dd6bf08092",
+      "x": 1600,
+      "width": 1280,
+      "height": 813,
+      "label": "Generating Screen..."
+    },
+    {
+      "id": "37da91d464ec47a3bc93ca06e8484b14",
+      "sourceScreen": "projects/3741489828161269655/screens/37da91d464ec47a3bc93ca06e8484b14",
+      "y": 1069,
+      "width": 512,
+      "height": 512,
+      "label": "Generating Image..."
+    },
+    {
+      "id": "411326da-eb20-49fd-94bb-865d1bdbed11",
+      "sourceScreen": "projects/3741489828161269655/screens/1962194517840986770",
+      "y": 3117,
+      "width": 403,
+      "height": 492,
+      "label": "image.png",
+      "type": "SCREEN_INSTANCE"
+    },
+    {
+      "id": "52546dc1ffdf464f8f9ae517a30815bf",
+      "sourceScreen": "projects/3741489828161269655/screens/52546dc1ffdf464f8f9ae517a30815bf",
+      "x": 2944,
+      "width": 1280,
+      "height": 1024,
+      "label": "Outfit Court Retro TV Broadcast"
+    },
+    {
+      "id": "8ec50dd2-9628-4514-9194-0fd9d0825586",
+      "sourceScreen": "projects/3741489828161269655/screens/12192209598595051702",
+      "width": 512,
+      "height": 230,
+      "label": "Screenshot 2026-10-23 102844.png",
+      "type": "SCREEN_INSTANCE"
+    },
+    {
+      "id": "assets_0622f4b741804a98876a64403522a672",
+      "y": 3865,
+      "width": 960,
+      "height": 540,
+      "sourceAsset": "assets/0622f4b741804a98876a64403522a672",
+      "type": "DESIGN_SYSTEM_INSTANCE"
+    },
+    {
+      "id": "assets_467271964b0f4b8c9bb91314587189df",
+      "x": 576,
+      "width": 960,
+      "height": 540,
+      "sourceAsset": "assets/467271964b0f4b8c9bb91314587189df",
+      "type": "DESIGN_SYSTEM_INSTANCE"
+    },
+    {
+      "id": "assets_83bc0ba82e4b42c9a1c50fa442a71741",
+      "y": 1837,
+      "width": 960,
+      "height": 540,
+      "sourceAsset": "assets/83bc0ba82e4b42c9a1c50fa442a71741",
+      "type": "DESIGN_SYSTEM_INSTANCE"
+    },
+    {
+      "id": "b19231449cd944a1a7f6de4f60bcf325",
+      "sourceScreen": "projects/3741489828161269655/screens/b19231449cd944a1a7f6de4f60bcf325",
+      "x": 1024,
+      "y": 1837,
+      "width": 1280,
+      "height": 813,
+      "label": "Generating Screen..."
+    },
+    {
+      "id": "b3f35cb25af2422fb03967d8b52dcd69",
+      "sourceScreen": "projects/3741489828161269655/screens/b3f35cb25af2422fb03967d8b52dcd69",
+      "y": 8111,
+      "width": 1280,
+      "height": 1828,
+      "label": "Generating Screen..."
+    },
+    {
+      "id": "b4ba84b4d21f40648be79edac5021b1d",
+      "sourceScreen": "projects/3741489828161269655/screens/b4ba84b4d21f40648be79edac5021b1d",
+      "y": 6039,
+      "width": 1280,
+      "height": 1510,
+      "label": "Generating Screen..."
+    },
+    {
+      "id": "b77950d7f6dd467b87df847fc92f2da5",
+      "sourceScreen": "projects/3741489828161269655/screens/b77950d7f6dd467b87df847fc92f2da5",
+      "x": 1024,
+      "y": 3865,
+      "width": 1280,
+      "height": 1234,
+      "label": "Generating Screen..."
+    }
+  ],
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

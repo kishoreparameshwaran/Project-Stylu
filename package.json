@@ -1,0 +1,20 @@
+{
+  "name": "outfit-court",
+  "version": "1.0.0",
+  "description": "Outfit Court - Viral mobile-first AI Fashion Tribunal",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build",
+    "build": "npm run build:backend && npm run build:frontend"
+  },
+  "keywords": [
+    "outfit-court",
+    "ai-fashion",
+    "fashion-judge"
+  ],
+  "author": "",
+  "license": "MIT"
+}

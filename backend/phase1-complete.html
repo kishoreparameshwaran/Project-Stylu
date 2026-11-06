@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>StylU Backend - Phase 1 Complete</title>
+<style>
+/* Design tokens */
+:root {
+  /* Layout: Arcade terminal aesthetic with structured information hierarchy */
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-code: #0c1420;
+  --fg-primary: #f1f5f9;
+  --fg-secondary: #94a3b8;
+  --fg-dim: #64748b;
+  --accent-cyan: #38bdf8;
+  --accent-sky: #0ea5e9;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --border: #334155;
+
+  /* Typography */
+  --font-display: 'JetBrains Mono', 'Courier New', monospace;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-main);
+  color: var(--fg-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-block: 2rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--accent-cyan);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--fg-primary);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-cyan);
+}
+
+h3 {
+  font-size: 1.125rem;
+  color: var(--accent-sky);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  color: var(--fg-secondary);
+  margin-bottom: 1rem;
+  max-width: 70ch;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-main) 100%);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--success);
+  color: var(--bg-main);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.status-badge::before {
+  content: '✓';
+  font-size: 1.25rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--accent-sky);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.code-block {
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--accent-cyan);
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.endpoint {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.method {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  background: var(--accent-sky);
+  color: var(--bg-main);
+}
+
+.method.post {
+  background: var(--success);
+}
+
+.method.put {
+  background: var(--warning);
+}
+
+.path {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--accent-cyan);
+}
+
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  color: var(--fg-secondary);
+}
+
+.feature-list li::before {
+  content: '▹';
+  color: var(--accent-cyan);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.file-tree {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--fg-secondary);
+}
+
+.file-tree .dir { color: var(--accent-sky); }
+.file-tree .file { color: var(--fg-primary); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  display: block;
+}
+
+thead {
+  background: var(--bg-card);
+  border-bottom: 2px solid var(--accent-cyan);
+}
+
+th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  font-family: var(--font-display);
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--fg-secondary);
+}
+
+code {
+  font-family: var(--font-display);
+  background: var(--bg-code);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-size: 0.875em;
+  color: var(--accent-cyan);
+}
+
+.next-steps {
+  background: var(--bg-card);
+  border-left: 4px solid var(--accent-cyan);
+  padding: 1.5rem;
+  border-radius: 4px;
+  margin-top: 2rem;
+}
+
+.next-steps h2 {
+  margin-top: 0;
+  border: none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div class="status-badge">PHASE 1 COMPLETE</div>
+    <h1>🎮 StylU / Outfit Court Backend</h1>
+    <p style="color: var(--fg-primary); font-size: 1.125rem;">AI-powered fashion judgment tribunal with retro arcade interface. Guest-first authentication, Lucky Wheel randomizer, and persistent settings now live.</p>
+  </div>
+
+  <h2>✨ What's Been Built</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Database Schema</h3>
+      <ul class="feature-list">
+        <li>SQLite with upgrade path to PostgreSQL</li>
+        <li>Guest user system with auto-generated handles</li>
+        <li>5 AI judge personalities with custom prompts</li>
+        <li>7 dresscode themes for Lucky Wheel</li>
+        <li>Week plans for per-user dress code assignments</li>
+        <li>Trials, votes, duels, and streaks (Phase 2+)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Authentication</h3>
+      <ul class="feature-list">
+        <li>Automatic guest session creation</li>
+        <li>Random handles like @NeonDrifter247</li>
+        <li>httpOnly signed cookies</li>
+        <li>Upgrade path to email/Google login</li>
+        <li>No signup required to start</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Lucky Wheel System</h3>
+      <ul class="feature-list">
+        <li>7-day dresscode randomizer</li>
+        <li>Cryptographically random segment selection</li>
+        <li>Per-user week plans (Monday-Sunday)</li>
+        <li>Manual spin for specific days</li>
+        <li>Auto-generate full week shuffle</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Settings Persistence</h3>
+      <ul class="feature-list">
+        <li>Sound: ON / MUTED</li>
+        <li>CRT display: HI-RES / ANALOG</li>
+        <li>Default judge preference</li>
+        <li>Auto-delete days (1-365)</li>
+        <li>Privacy toggles for sharing</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>📡 API Endpoints (Phase 1)</h2>
+
+  <div class="code-block">Base URL: http://localhost:3000/api</div>
+
+  <h3>Judges</h3>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/judges</span>
+  </div>
+  <p>Returns all 5 AI judges with channel numbers and severity ratings.</p>
+
+  <h3>Dresscodes</h3>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/dresscodes</span>
+  </div>
+  <p>Returns 7 dresscode themes for the Lucky Wheel with colors, rules, and violations.</p>
+
+  <h3>Settings</h3>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/settings</span>
+  </div>
+  <div class="endpoint">
+    <span class="method put">PUT</span>
+    <span class="path">/settings</span>
+  </div>
+  <p>Get or update user settings (sound, display, privacy preferences).</p>
+
+  <h3>Lucky Wheel</h3>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/wheel/week-plan</span>
+  </div>
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/wheel/spin</span>
+  </div>
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/wheel/auto-week</span>
+  </div>
+  <p>Manage 7-day dresscode assignments with cryptographically random spins.</p>
+
+  <h2>🗂️ Project Structure</h2>
+
+  <div class="code-block file-tree">
+<span class="dir">Stylu/</span>
+├── <span class="dir">backend/</span>
+│   ├── <span class="dir">src/</span>
+│   │   ├── <span class="file">index.ts</span>              # Express server
+│   │   ├── <span class="dir">config/</span>
+│   │   │   └── <span class="file">database.ts</span>       # SQLite with sql.js
+│   │   ├── <span class="dir">middleware/</span>
+│   │   │   ├── <span class="file">auth.ts</span>           # Guest sessions
+│   │   │   └── <span class="file">validation.ts</span>     # Zod schemas
+│   │   ├── <span class="dir">routes/</span>
+│   │   │   ├── <span class="file">judges.ts</span>
+│   │   │   ├── <span class="file">dresscodes.ts</span>
+│   │   │   ├── <span class="file">settings.ts</span>
+│   │   │   └── <span class="file">wheel.ts</span>
+│   │   ├── <span class="dir">models/</span>
+│   │   │   └── <span class="file">schema.sql</span>        # Database schema
+│   │   ├── <span class="dir">seeds/</span>
+│   │   │   └── <span class="file">seed.ts</span>           # DB seeding script
+│   │   └── <span class="dir">types/</span>
+│   │       └── <span class="file">index.ts</span>          # TypeScript types
+│   ├── <span class="dir">data/</span>
+│   │   └── <span class="file">stylu.db</span>             # SQLite database
+│   ├── <span class="file">.env</span>                     # Environment config
+│   ├── <span class="file">package.json</span>
+│   ├── <span class="file">tsconfig.json</span>
+│   └── <span class="file">README.md</span>
+├── <span class="dir">assets/</span>
+│   └── <span class="file">api.js</span>                  # Frontend API wrapper
+└── <span class="file">index.html</span>                  # Existing frontend
+  </div>
+
+  <h2>🚀 Quick Start</h2>
+
+  <h3>1. Install Dependencies</h3>
+  <div class="code-block">cd backend<br>npm install</div>
+
+  <h3>2. Configure Environment</h3>
+  <div class="code-block">cp .env.example .env<br># Edit .env - set MOCK_AI=true for testing</div>
+
+  <h3>3. Seed Database</h3>
+  <div class="code-block">npm run seed</div>
+
+  <h3>4. Start Server</h3>
+  <div class="code-block">npm run dev</div>
+
+  <p>Server starts at <code>http://localhost:3000</code></p>
+
+  <h2>🧪 Test the API</h2>
+
+  <div class="code-block">
+# Health check<br>
+curl http://localhost:3000/health<br><br>
+
+# Get judges (creates guest session)<br>
+curl http://localhost:3000/api/judges -c cookies.txt<br><br>
+
+# Get dresscodes<br>
+curl http://localhost:3000/api/dresscodes -b cookies.txt<br><br>
+
+# Spin the wheel for Tuesday<br>
+curl http://localhost:3000/api/wheel/spin \<br>
+  -X POST -H "Content-Type: application/json" \<br>
+  -d '{"day_index":1}' -b cookies.txt
+  </div>
+
+  <h2>📦 Database Seed Data</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Judge</th>
+        <th>Channel</th>
+        <th>Personality</th>
+        <th>Severity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>90s MALL COP</td>
+        <td>CH 01</td>
+        <td>Strict security guard with zero tolerance</td>
+        <td>6/10</td>
+      </tr>
+      <tr>
+        <td>HARAJUKU ELITE</td>
+        <td>CH 02</td>
+        <td>Avant-garde Tokyo street fashion guru</td>
+        <td>8/10</td>
+      </tr>
+      <tr>
+        <td>VINTAGE THRIFT KING</td>
+        <td>CH 03</td>
+        <td>Sustainability-focused thrift archaeologist</td>
+        <td>7/10</td>
+      </tr>
+      <tr>
+        <td>STRICT AUNTIE</td>
+        <td>CH 04</td>
+        <td>Judgmental family member, modesty-focused</td>
+        <td>5/10</td>
+      </tr>
+      <tr>
+        <td>RUNWAY CZAR</td>
+        <td>CH 05</td>
+        <td>Brutal high fashion critic, no mercy</td>
+        <td>9/10</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>7 Dresscode Themes</h3>
+  <ul class="feature-list">
+    <li><strong>MON</strong> – Neo-Tailored (88%) - Sharp blazers and structure</li>
+    <li><strong>TUE</strong> – Washed Denim God (94%) - Double denim perfection</li>
+    <li><strong>WED</strong> – Cyber Utility (86%) - Tactical cargos and harnesses</li>
+    <li><strong>THU</strong> – Toasted Knitwear (91%) - Earth-tone mohair sweaters</li>
+    <li><strong>FRI</strong> – Biker Rebel (96%) - Distressed leather and boots</li>
+    <li><strong>SAT</strong> – Street Runner (89%) - Hoodies and chunky sneakers</li>
+    <li><strong>SUN</strong> – Chic Lounge (85%) - Cashmere and tailored sweats</li>
+  </ul>
+
+  <div class="next-steps">
+    <h2>⏭️ Next: Phase 2</h2>
+    <p><strong>Goal:</strong> Connect the Lucky Wheel frontend to the backend</p>
+    <ul class="feature-list">
+      <li>Wire wheel spin buttons to <code>/api/wheel/spin</code></li>
+      <li>Animate wheel rotation to server's <code>segment_index</code></li>
+      <li>Update 7 day cards with real dresscode data</li>
+      <li>Replace hardcoded "TUE (TODAY)" with actual weekday</li>
+      <li>Load week plan on page load</li>
+      <li>Persist audio and scanline settings</li>
+    </ul>
+    <p><strong>Ready to proceed?</strong> I can start Phase 2 immediately to wire up the frontend!</p>
+  </div>
+</div>
+</body>
+</html>
